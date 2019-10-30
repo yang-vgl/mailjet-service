@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Log;
 class AccountConfirm
 {
     protected $service;
-    protected $mjV31;
 
     /**
      * Create the event listener.

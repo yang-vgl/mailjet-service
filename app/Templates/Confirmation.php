@@ -15,9 +15,11 @@ class Confirmation extends Base
 
     public function __construct($data)
     {
-        $this->validate($data);
-        $this->baseInit($data);
-        $this->init($data);
+        if($this->validate($data))
+        {
+            $this->baseInit($data);
+            $this->init($data);
+        }
     }
 
     public function validate(array $data)
@@ -27,9 +29,10 @@ class Confirmation extends Base
             'link' => 'required|url',
         ]);
         if ($validator->fails()) {
-            $this->error = $validator->errors();
-            return;
+            $this->error = $validator->errors()->getMessages();
+            return false;
         }
+        return true;
     }
 
     public function init($data)
@@ -41,12 +44,12 @@ class Confirmation extends Base
         ];
     }
 
-    public function setLink($link) {
-        $this->$link = $link;
-    }
-
     public function getLink() {
         return $this->link;
+    }
+
+    public function setLink($link) {
+        $this->$link = $link;
     }
 
     public function getBody() {
@@ -54,8 +57,8 @@ class Confirmation extends Base
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => "duyang48484848@gmail.com",
-                        'Name' => "Me"
+                        'Email' => $this->fromEmail,
+                        'Name' => $this->fromName
                     ],
                     'To' => [
                         [
@@ -72,7 +75,6 @@ class Confirmation extends Base
         ];
         return $body;
     }
-
 
 
 }

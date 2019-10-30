@@ -2,11 +2,8 @@
 
 namespace App\Services;
 
-use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionalContract;
 use App\Templates\Confirmation;
-use Illuminate\Support\ServiceProvider;
-use Mailjet\Client;
 use Mailjet\Resources;
 
 class AccountConfirmationService
@@ -15,8 +12,8 @@ class AccountConfirmationService
 
     /**
      * Create the event listener.
-     * @param AccountConfirmationService $service
      * @param MailTransactionalContract $mjV31
+     * @param Confirmation $template
      */
     public function __construct( MailTransactionalContract $mjV31)
     {
@@ -25,13 +22,11 @@ class AccountConfirmationService
 
     public function send(array $data)
     {
-        //['toEmail' => "duyang48484848@gmail.com", 'link' => "https://www.google.com", 'subject' => 'test subject', 'toName' => 'test name']
         $confirm = new Confirmation($data);
-//        if($confirm->getError()){
-//            return $confirm->getError();
-//        }
+        if($confirm->getError()){
+            return $confirm->getError();
+        }
         $body = $confirm->getBody();
-        //print_r($body);exit;
         $response =  $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body]);
         if($response->success()){
             return $response->getData();
