@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test/di', 'MailTestController@testDependency');
+Route::get('/test/send', 'MailTestController@testSend');
