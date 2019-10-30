@@ -20,10 +20,9 @@ class AccountConfirm
      * @param AccountConfirmationService $service
      * @param MailTransactionalContract $mjV31
      */
-    public function __construct(AccountConfirmationService $service, MailTransactionalContract $mjV31)
+    public function __construct(AccountConfirmationService $service)
     {
         $this->service = $service;
-        $this->mjV31 = $mjV31;
     }
 
     /**
@@ -36,6 +35,7 @@ class AccountConfirm
     {
         Log::info("email sent through event-listener");
         //$this->trans->testSend($this->mjV31);
-        $this->service->send($this->mjV31, $event->data);
+        $res = $this->service->send($event->data);
+        print_r($res);exit;
     }
 }

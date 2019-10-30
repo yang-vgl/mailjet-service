@@ -32,7 +32,7 @@ class MailTestController extends Controller
 
     public function testSend()
     {
-        $data = ['toEmail' => "duyang48484848@gmail.com", 'link' => "https://www.google.com", 'subject' => 'test subject', 'toName' => 'test name'];
+        $data = ['toEmail' => "duyanguk@163.com", 'link' => "https://www.google.com", 'subject' => 'test subject', 'toName' => 'test name'];
         event(new AccountCreate($data));exit;
 //        $confirm = new Confirmation();
 //        if($confirm->getError()){
