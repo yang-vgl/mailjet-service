@@ -33,7 +33,7 @@ class MailTestController extends Controller
     {
         $confirm = new Confirmation(['toEmail' => "duyang48484848@gmail.com", 'link' => "https://www.google.com", 'subject' => 'test subject', 'toName' => 'test name']);
         if($confirm->getError()){
-           return $confirm->getError();
+            return $confirm->getError();
         }
         $body = $confirm->getBody();
         //print_r($body);exit;
@@ -54,8 +54,8 @@ class MailTestController extends Controller
                     'TemplateLanguage' => true,
                     'Subject' => "Account Confirm",
                     'Variables' => [
-                         "firstname" =>  "Yang Du",
-                         "link" =>  "www.google.com"
+                        "firstname" =>  "Yang Du",
+                        "link" =>  "www.google.com"
                     ]
                 ]
             ]
