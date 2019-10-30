@@ -2,10 +2,10 @@
 
 namespace App\Services\Base;
 
-use App\Contracts\MailTransactionnalContract;
+use App\Contracts\MailTransactionalContract;
 use Mailjet\Client;
 
-class MailjetV31Service implements MailTransactionnalContract
+class MailjetV31Service implements MailTransactionalContract
 {
     private $client;
 

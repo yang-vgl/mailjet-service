@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\MailCommonContract;
-use App\Contracts\MailTransactionnalContract;
+use App\Contracts\MailTransactionalContract;
 use App\Services\Base\MailjetV3Service;
 use Mailjet\Resources;
 
@@ -15,10 +15,10 @@ class MailTestController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param MailTransactionnalContract $mjV31
+     * @param MailTransactionalContract $mjV31
      * @param MailCommonContract $mjV3
      */
-    public function __construct(MailTransactionnalContract $mjV31, MailCommonContract $mjV3)
+    public function __construct(MailTransactionalContract $mjV31, MailCommonContract $mjV3)
     {
         $this->mjV31 = $mjV31;
         $this->mjV3 = $mjV3;

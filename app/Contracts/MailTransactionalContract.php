@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface MailTransactionnalContract
+interface MailTransactionalContract
 {
     public function getClient();
 }

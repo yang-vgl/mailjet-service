@@ -3,7 +3,7 @@
 namespace App\Services\Base;
 
 use App\Contracts\MailCommonContract;
-use App\Contracts\MailTransactionnalContract;
+use App\Contracts\MailTransactionalContract;
 use Mailjet\Client;
 
 class MailjetV3Service implements MailCommonContract

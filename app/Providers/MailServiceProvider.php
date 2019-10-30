@@ -6,7 +6,7 @@ use App\Services\Base\MailjetV31Service;
 use App\Services\Base\MailjetV3Service;
 use Illuminate\Support\ServiceProvider;
 use Mailjet\Client;
-use App\Contracts\MailTransactionnalContract;
+use App\Contracts\MailTransactionalContract;
 use App\Contracts\MailCommonContract;
 
 class MailServiceProvider extends ServiceProvider
@@ -18,7 +18,7 @@ class MailServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(MailTransactionnalContract::class, function ($app) {
+        $this->app->bind(MailTransactionalContract::class, function ($app) {
             $config = $this->app['config']->get('services.mailjet', array());
             $call = $this->app['config']->get('services.mailjet.transactional.call', true);
             $options = $this->app['config']->get('services.mailjet.transactional.options', array());
