@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionalContract;
+use App\Events\AccountCreate;
 use App\Services\Base\MailjetV3Service;
 use App\Templates\Confirmation;
 use Mailjet\Resources;
@@ -31,37 +32,39 @@ class MailTestController extends Controller
 
     public function testSend()
     {
-        $confirm = new Confirmation(['toEmail' => "duyang48484848@gmail.com", 'link' => "https://www.google.com", 'subject' => 'test subject', 'toName' => 'test name']);
-        if($confirm->getError()){
-            return $confirm->getError();
-        }
-        $body = $confirm->getBody();
-        //print_r($body);exit;
-        $body1 = [
-            'Messages' => [
-                [
-                    'From' => [
-                        'Email' => "duyang48484848@gmail.com",
-                        'Name' => "Me"
-                    ],
-                    'To' => [
-                        [
-                            'Email' => "duyang48484848@gmail.com",
-                            'Name' => "You"
-                        ]
-                    ],
-                    'TemplateID' => 1064860,
-                    'TemplateLanguage' => true,
-                    'Subject' => "Account Confirm",
-                    'Variables' => [
-                        "firstname" =>  "Yang Du",
-                        "link" =>  "www.google.com"
-                    ]
-                ]
-            ]
-        ];
-        $response = $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body]);
-        print_r($response);exit;
+        $data = ['toEmail' => "duyang48484848@gmail.com", 'link' => "https://www.google.com", 'subject' => 'test subject', 'toName' => 'test name'];
+        event(new AccountCreate($data));exit;
+//        $confirm = new Confirmation();
+//        if($confirm->getError()){
+//            return $confirm->getError();
+//        }
+//        $body = $confirm->getBody();
+//        //print_r($body);exit;
+//        $body1 = [
+//            'Messages' => [
+//                [
+//                    'From' => [
+//                        'Email' => "duyang48484848@gmail.com",
+//                        'Name' => "Me"
+//                    ],
+//                    'To' => [
+//                        [
+//                            'Email' => "duyang48484848@gmail.com",
+//                            'Name' => "You"
+//                        ]
+//                    ],
+//                    'TemplateID' => 1064860,
+//                    'TemplateLanguage' => true,
+//                    'Subject' => "Account Confirm",
+//                    'Variables' => [
+//                        "firstname" =>  "Yang Du",
+//                        "link" =>  "www.google.com"
+//                    ]
+//                ]
+//            ]
+//        ];
+//        $response = $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body]);
+//        print_r($response);exit;
         //$response->success() && var_dump($response->getData());
     }
 
