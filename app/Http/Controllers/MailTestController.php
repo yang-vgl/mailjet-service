@@ -39,19 +39,23 @@ class MailTestController extends Controller
                     ],
                     'To' => [
                         [
-                            'Email' => "duyanguk@163.com",
+                            'Email' => "duyang48484848@gmail.com",
                             'Name' => "You"
                         ]
                     ],
-                    'Subject' => "My first Mailjet Email!",
-                    'TextPart' => "Greetings from Mailjet!",
-                    'HTMLPart' => "<h3>Dear passenger 1, welcome to <a href=\"https://www.mailjet.com/\">Mailjet</a>!</h3>
-            <br />May the delivery force be with you!"
+                    'TemplateID' => 1064860,
+                    'TemplateLanguage' => true,
+                    'Subject' => "Account Confirm",
+                    'Variables' => [
+                         "firstname" =>  "Yang Du",
+                         "link" =>  "www.google.com"
+                    ]
                 ]
             ]
         ];
         $response = $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body]);
-        $response->success() && var_dump($response->getData());
+        print_r($response);exit;
+        //$response->success() && var_dump($response->getData());
     }
 
     public function testGet()

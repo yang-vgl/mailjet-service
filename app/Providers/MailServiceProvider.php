@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Services\Base\MailjetV31Service;
 use App\Services\Base\MailjetV3Service;
 use Illuminate\Support\ServiceProvider;
-use Mailjet\Client;
 use App\Contracts\MailTransactionalContract;
 use App\Contracts\MailCommonContract;
 
@@ -19,16 +18,16 @@ class MailServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(MailTransactionalContract::class, function ($app) {
-            $config = $this->app['config']->get('services.mailjet', array());
-            $call = $this->app['config']->get('services.mailjet.transactional.call', true);
-            $options = $this->app['config']->get('services.mailjet.transactional.options', array());
+            $config = $app['config']->get('services.mailjet', array());
+            $call = $app['config']->get('services.mailjet.transactional.call', true);
+            $options = $app['config']->get('services.mailjet.transactional.options', array());
             return new MailjetV31Service($config['key'], $config['secret'], $call, $options);
         });
 
         $this->app->bind(MailCommonContract::class, function ($app) {
-            $config = $this->app['config']->get('services.mailjet', array());
-            $call = $this->app['config']->get('services.mailjet.common.call', true);
-            $options = $this->app['config']->get('services.mailjet.common.options', array());
+            $config = $app['config']->get('services.mailjet', array());
+            $call = $app['config']->get('services.mailjet.common.call', true);
+            $options = $app['config']->get('services.mailjet.common.options', array());
             return new MailjetV3Service($config['key'], $config['secret'], $call, $options);
         });
     }
