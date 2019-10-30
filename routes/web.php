@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('/test/di', 'MailTestController@testDependency');
 Route::get('/test/send', 'MailTestController@testSend');
+Route::get('/test/get', 'MailTestController@testGet');

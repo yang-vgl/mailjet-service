@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Base;
 
+use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionnalContract;
-use Illuminate\Support\ServiceProvider;
 use Mailjet\Client;
-use Mailjet\Resources;
 
-class MailjetV31Service implements MailTransactionnalContract
+class MailjetV3Service implements MailCommonContract
 {
     private $client;
 

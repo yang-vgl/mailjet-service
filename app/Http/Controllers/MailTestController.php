@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionnalContract;
+use App\Services\Base\MailjetV3Service;
 use Mailjet\Resources;
 
 class MailTestController extends Controller
 {
     protected $mjV31;
+    protected $mjV3;
 
     /**
      * Create a new controller instance.
      *
      * @param MailTransactionnalContract $mjV31
+     * @param MailCommonContract $mjV3
      */
-    public function __construct(MailTransactionnalContract $mjV31)
+    public function __construct(MailTransactionnalContract $mjV31, MailCommonContract $mjV3)
     {
         $this->mjV31 = $mjV31;
+        $this->mjV3 = $mjV3;
     }
     public function testDependency()
     {
@@ -46,6 +51,12 @@ class MailTestController extends Controller
             ]
         ];
         $response = $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body]);
+        $response->success() && var_dump($response->getData());
+    }
+
+    public function testGet()
+    {
+        $response = $this->mjV3->getClient()->get(Resources::$Message, ['id' => 1152921506578001004]);
         $response->success() && var_dump($response->getData());
     }
 }
