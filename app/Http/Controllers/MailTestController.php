@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionalContract;
 use App\Services\Base\MailjetV3Service;
+use App\Templates\Confirmation;
 use Mailjet\Resources;
 
 class MailTestController extends Controller
@@ -30,7 +31,13 @@ class MailTestController extends Controller
 
     public function testSend()
     {
-        $body = [
+        $confirm = new Confirmation(['toEmail' => "duyang48484848@gmail.com", 'link' => "https://www.google.com", 'subject' => 'test subject', 'toName' => 'test name']);
+        if($confirm->getError()){
+           return $confirm->getError();
+        }
+        $body = $confirm->getBody();
+        print_r($body);
+        $body1 = [
             'Messages' => [
                 [
                     'From' => [

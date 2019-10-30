@@ -8,15 +8,21 @@ class Confirmation
 {
     protected static $id = 1064860;
 
+    protected $subject = 'Account Confirm';
+
     protected $content = null;
 
     protected $toEmail = null;
 
-    protected $toName = null;
+    protected $toName = 'Cruiser';
 
     protected $link = null;
 
-    public function __construct($data=[])
+    protected $body = [];
+
+    protected $error = [];
+
+    public function __construct($data)
     {
         $this->validate($data);
     }
@@ -28,11 +34,19 @@ class Confirmation
             'link' => 'required|url',
         ]);
         if ($validator->fails()) {
-            return $validator->errors();
+            $this->error = $validator->errors();
+            return;
         }
         $this->toEmail = $data['toEmail'];
         $this->link = $data['link'];
-        $this->toName = isset($data['toName']) ? $data['toName'] : 'Cruiser';
+        if(isset($data['toName']))
+        {
+            $this->toName = $data['toName'];
+        }
+        if(isset($data['subject']))
+        {
+            $this->subject = $data['subject'];
+        }
     }
 
     public function setToEmail($toEmail) {
@@ -58,5 +72,38 @@ class Confirmation
     public function getToName($toName) {
         return $this->toName;
     }
+
+    public function getError() {
+        return $this->error;
+    }
+
+    public function getBody() {
+        $body = [
+            'Messages' => [
+                [
+                    'From' => [
+                        'Email' => "duyang48484848@gmail.com",
+                        'Name' => "Me"
+                    ],
+                    'To' => [
+                        [
+                            'Email' =>  $this->toEmail,
+                            'Name' => $this->toName
+                        ]
+                    ],
+                    'TemplateID' => self::$id,
+                    'TemplateLanguage' => true,
+                    'Subject' => $this->subject,
+                    'Variables' => [
+                        "firstname" =>  $this->toName,
+                        "link" =>  $this->link
+                    ]
+                ]
+            ]
+        ];
+        return $body;
+    }
+
+
 
 }
