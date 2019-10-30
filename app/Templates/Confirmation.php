@@ -4,27 +4,20 @@ namespace App\Templates;
 
 use Illuminate\Support\Facades\Validator;
 
-class Confirmation
+class Confirmation extends Base
 {
-    protected static $id = 1064860;
+    protected static $template_id = 1064860;
 
     protected $subject = 'Account Confirm';
 
-    protected $content = null;
-
-    protected $toEmail = null;
-
-    protected $toName = 'Cruiser';
-
     protected $link = null;
 
-    protected $body = [];
-
-    protected $error = [];
 
     public function __construct($data)
     {
         $this->validate($data);
+        $this->baseInit($data);
+        $this->init($data);
     }
 
     public function validate(array $data)
@@ -37,24 +30,15 @@ class Confirmation
             $this->error = $validator->errors();
             return;
         }
-        $this->toEmail = $data['toEmail'];
+    }
+
+    public function init($data)
+    {
         $this->link = $data['link'];
-        if(isset($data['toName']))
-        {
-            $this->toName = $data['toName'];
-        }
-        if(isset($data['subject']))
-        {
-            $this->subject = $data['subject'];
-        }
-    }
-
-    public function setToEmail($toEmail) {
-        $this->toEmail = $toEmail;
-    }
-
-    public function getToEmail() {
-        return $this->toEmail;
+        $this->variables = [
+            "firstname" =>  $this->toName,
+            "link" =>  $this->link
+        ];
     }
 
     public function setLink($link) {
@@ -63,18 +47,6 @@ class Confirmation
 
     public function getLink() {
         return $this->link;
-    }
-
-    public function setToName($toName) {
-        $this->toName = $toName;
-    }
-
-    public function getToName($toName) {
-        return $this->toName;
-    }
-
-    public function getError() {
-        return $this->error;
     }
 
     public function getBody() {
@@ -91,13 +63,10 @@ class Confirmation
                             'Name' => $this->toName
                         ]
                     ],
-                    'TemplateID' => self::$id,
+                    'TemplateID' => self::$template_id,
                     'TemplateLanguage' => true,
                     'Subject' => $this->subject,
-                    'Variables' => [
-                        "firstname" =>  $this->toName,
-                        "link" =>  $this->link
-                    ]
+                    'Variables' => $this->variables
                 ]
             ]
         ];

@@ -36,7 +36,7 @@ class MailTestController extends Controller
            return $confirm->getError();
         }
         $body = $confirm->getBody();
-        print_r($body);
+        //print_r($body);exit;
         $body1 = [
             'Messages' => [
                 [
