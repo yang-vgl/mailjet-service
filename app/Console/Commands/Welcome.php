@@ -39,18 +39,26 @@ class Welcome extends Command
      */
     public function handle()
     {
-        $subject = $this->ask('Enter Subject:', 'Welcome Aboard !');
-        $fromEmail = $this->ask("Enter From Email():", config('services.mailjet.From.Email'));
-        $fromName = $this->ask("Enter From Name():", config('services.mailjet.From.Name'));
+        $recipients = [];
+        $subject = $this->ask('Enter Subject(optional):', 'Welcome Aboard !');
+        $fromEmail = $this->ask("Enter From Email(optional):", config('services.mailjet.From.Email'));
+        $fromName = $this->ask("Enter From Name(optional):", config('services.mailjet.From.Name'));
         $toEmail = $this->ask('enter recipient\'s email(required):');
-        $toName = $this->ask('Enter recipient\'s Name(optional):');
-        $data = [
-            'recipients' =>[
-                [
+        $toName = $this->ask('Enter recipient\'s Name(optional):', 'Cruiser');
+        $recipients[] = [
+            'email' => $toEmail,
+            'name' => $toName
+        ];
+        while($this->confirm('Do you wish to add another recipient ?')) {
+            $toEmail = $this->ask('enter recipient\'s email(required):');
+            $toName = $this->ask('Enter recipient\'s Name(optional):', 'Cruiser');
+            $recipients[] = [
                 'email' => $toEmail,
                 'name' => $toName
-                ]
-            ],
+            ];
+        }
+        $data = [
+            'recipients' => $recipients,
             'fromEmail' => $fromEmail,
             'fromName' => $fromName,
             'subject' => $subject,
