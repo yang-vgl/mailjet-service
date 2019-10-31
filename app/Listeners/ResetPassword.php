@@ -6,7 +6,7 @@ use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionalContract;
 use App\Events\AccountCreate;
 use App\Services\AccountConfirmationService;
-use App\Services\ForgetPasswordService;
+use App\Services\ResetPasswordService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
@@ -18,9 +18,9 @@ class ResetPassword
 
     /**
      * Create the event listener.
-     * @param ForgetPasswordService $service
+     * @param ResetPasswordService $service
      */
-    public function __construct(ForgetPasswordService $service)
+    public function __construct(ResetPasswordService $service)
     {
         $this->service = $service;
     }

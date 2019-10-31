@@ -10,9 +10,7 @@ class Base
 
     protected $fromName = null;
 
-    protected $toEmail = null;
-
-    protected $toName = 'Cruiser';
+    protected $recipients = [];
 
     protected $body = [];
 
@@ -22,11 +20,7 @@ class Base
 
     public function baseInit($data)
     {
-        $this->toEmail = $data['toEmail'];
-        if(isset($data['toName']))
-        {
-            $this->toName = $data['toName'];
-        }
+
         if(isset($data['fromName']))
         {
             $this->fromName = $data['fromName'];
@@ -43,22 +37,8 @@ class Base
         {
             $this->subject = $data['subject'];
         }
-    }
+        $this->recipients = $data['recipients'];
 
-    public function getToEmail() {
-        return $this->toEmail;
-    }
-
-    public function setToEmail($toEmail) {
-        $this->toEmail = $toEmail;
-    }
-
-    public function getToName($toName) {
-        return $this->toName;
-    }
-
-    public function setToName($toName) {
-        $this->toName = $toName;
     }
 
     public function getError() {

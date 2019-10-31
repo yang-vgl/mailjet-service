@@ -4,11 +4,11 @@ namespace App\Templates;
 
 use Illuminate\Support\Facades\Validator;
 
-class ResetPassword extends Base
+class PriceAlert extends Base
 {
-    protected static $template_id = 852568;
+    protected static $template_id = 1066812;
 
-    protected $subject = 'Reset Password';
+    protected $subject = 'Price Alert';
 
     protected $code = null;
 

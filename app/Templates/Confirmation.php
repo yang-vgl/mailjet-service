@@ -12,6 +12,7 @@ class Confirmation extends Base
 
     protected $link = null;
 
+    protected $firstName = 'cruiser';
 
     public function __construct($data)
     {
@@ -25,8 +26,8 @@ class Confirmation extends Base
     public function validate(array $data)
     {
         $validator = Validator::make($data, [
-            'toEmail' => 'required|email',
             'link' => 'required|url',
+            'recipients.email' => 'required|email',
         ]);
         if ($validator->fails()) {
             $this->error = $validator->errors()->getMessages();
@@ -39,7 +40,7 @@ class Confirmation extends Base
     {
         $this->link = $data['link'];
         $this->variables = [
-            "firstname" =>  $this->toName,
+            "firstname" =>  isset($this->recipients[0]['name']) ? $this->recipients[0]['name'] : $this->firstName,
             "link" =>  $this->link
         ];
     }
@@ -60,16 +61,11 @@ class Confirmation extends Base
                         'Email' => $this->fromEmail,
                         'Name' => $this->fromName
                     ],
-                    'To' => [
-                        [
-                            'Email' =>  $this->toEmail,
-                            'Name' => $this->toName
-                        ]
-                    ],
-                    'TemplateID' => self::$template_id,
+                    'To' => [$this->recipients],
                     'TemplateLanguage' => true,
                     'Subject' => $this->subject,
-                    'Variables' => $this->variables
+                    'Variables' =>$this->variables,
+                    'TemplateID' => self::$template_id
                 ]
             ]
         ];

@@ -8,7 +8,7 @@ use App\Templates\ResetPassword;
 use App\Utils\SendWithTemplate;
 use Mailjet\Resources;
 
-class ForgetPasswordService
+class ResetPasswordService
 {
     protected $mjV31;
 

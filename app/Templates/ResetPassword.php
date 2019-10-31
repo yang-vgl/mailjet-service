@@ -26,7 +26,7 @@ class ResetPassword extends Base
     public function validate(array $data)
     {
         $validator = Validator::make($data, [
-            'toEmail' => 'required|email',
+            'recipients.email' => 'required|email',
             'code' => 'required',
             'link' => 'required|url',
         ]);
@@ -61,16 +61,11 @@ class ResetPassword extends Base
                         'Email' => $this->fromEmail,
                         'Name' => $this->fromName
                     ],
-                    'To' => [
-                        [
-                            'Email' =>  $this->toEmail,
-                            'Name' => $this->toName
-                        ]
-                    ],
-                    'TemplateID' => self::$template_id,
+                    'To' => [$this->recipients],
                     'TemplateLanguage' => true,
                     'Subject' => $this->subject,
-                    'Variables' => $this->variables
+                    'Variables' =>$this->variables,
+                    'TemplateID' => self::$template_id
                 ]
             ]
         ];

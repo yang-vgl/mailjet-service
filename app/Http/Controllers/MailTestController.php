@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Console\Commands\AccountConfirm;
 use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionalContract;
 use App\Events\AccountCreate;
+use App\Services\AccountConfirmationService;
 use App\Services\Base\MailjetV3Service;
-use App\Services\ForgetPasswordService;
+use App\Services\ResetPasswordService;
 use App\Services\SyncTemplateService;
 use App\Templates\Confirmation;
 use Mailjet\Resources;
@@ -22,9 +24,9 @@ class MailTestController extends Controller
      *
      * @param MailTransactionalContract $mjV31
      * @param MailCommonContract $mjV3
-     * @param ForgetPasswordService $sync
+     * @param ResetPasswordService $sync
      */
-    public function __construct(MailTransactionalContract $mjV31, MailCommonContract $mjV3, ForgetPasswordService $sync)
+    public function __construct(MailTransactionalContract $mjV31, MailCommonContract $mjV3, ResetPasswordService $sync)
     {
         $this->mjV31 = $mjV31;
         $this->mjV3 = $mjV3;
@@ -38,11 +40,13 @@ class MailTestController extends Controller
     public function testSend()
     {
         $data = [
-            'toEmail' => "duyanguk@163.com",
             'link' => "https://www.google.com",
             'subject' => 'test subject',
-            'toName' => 'test name',
-            'code' => 'ioj89rji3jf983jf983j9f'
+            'code' => 'ioj89rji3jf983jf983j9f',
+            'recipients' =>[
+                    'email' => 'duyanguk@163.com',
+                    'name' => 'Yang'
+            ]
         ];
         $res = $this->sync->send($data);
         print_r($res);exit;
@@ -53,32 +57,51 @@ class MailTestController extends Controller
 //        }
 //        $body = $confirm->getBody();
 //        //print_r($body);exit;
-//        $body1 = [
-//            'Messages' => [
-//                [
-//                    'From' => [
-//                        'Email' => "duyang48484848@gmail.com",
-//                        'Name' => "Me"
-//                    ],
-//                    'To' => [
-//                        [
-//                            'Email' => "duyang48484848@gmail.com",
-//                            'Name' => "You"
-//                        ]
-//                    ],
-//                    'TemplateID' => 1064860,
-//                    'TemplateLanguage' => true,
-//                    'Subject' => "Account Confirm",
-//                    'Variables' => [
-//                        "firstname" =>  "Yang Du",
-//                        "link" =>  "www.google.com"
-//                    ]
-//                ]
-//            ]
-//        ];
-//        $response = $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body]);
-//        print_r($response);exit;
-        //$response->success() && var_dump($response->getData());
+        $body1 = [
+            'Messages' => [
+                [
+                    'From' => [
+                        'Email' => "info@cruisewatch.com",
+                        'Name' => "Cruise Watch"
+                    ],
+                    'To' => [
+                        [
+                            'Email' => "duyanguk@163.com",
+                            'Name' => "You"
+                        ]
+                    ],
+                    'TemplateID' => 1066812,
+                    'TemplateLanguage' => true,
+                    'Subject' => "We have a new price alert for you",
+                    'Variables' => [
+                        "firstname" => "Cruiser",
+                        "links"=> [
+                            'details' => 'http://www.google.com',
+                            "configure"=>"http://www.google.com",
+                            "unsubscribe"=>"http://www.google.com"
+                        ],
+                        "alert" => [
+                            "trip_name"=>"11",
+                            "ship_name"=>"11",
+                            "departure_date"=>"2019/12/12",
+                            "prices"=> [
+                                [
+                                    'is_drop' => 1,
+                                    'cabin_type' =>'1',
+                                    'current' => 11,
+                                    'change_abs' => 1,
+                                    'change_rel' => 2,
+                                    'updated_at' => '1',
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $response = $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body1]);
+        print_r($response);exit;
+        $response->success() && var_dump($response->getData());
     }
 
     public function testGet()
@@ -89,6 +112,8 @@ class MailTestController extends Controller
 
     public function testTemp()
     {
-        $this->sync->sync(1,1);
+        $response = $this->mjV3->getClient()->get(Resources::$Template, ['id' => 850961]);
+        print_r($response);exit;
+        $response->success() && var_dump($response->getData());
     }
 }
