@@ -4,10 +4,11 @@ namespace App\Services;
 
 use App\Contracts\MailTransactionalContract;
 use App\Templates\Confirmation;
+use App\Templates\ResetPassword;
 use App\Utils\SendWithTemplate;
 use Mailjet\Resources;
 
-class AccountConfirmationService
+class ForgetPasswordService
 {
     protected $mjV31;
 
@@ -16,7 +17,6 @@ class AccountConfirmationService
     /**
      * Create the event listener.
      * @param MailTransactionalContract $mjV31
-     * @param Confirmation $template
      */
     public function __construct( MailTransactionalContract $mjV31)
     {
@@ -25,8 +25,8 @@ class AccountConfirmationService
 
     public function send(array $data)
     {
-        $res = $this->sendWithTemplate(new Confirmation($data));
-        print_r($res);exit;
+        $res = $this->sendWithTemplate(new ResetPassword($data));
+        return $res;
     }
 
 }

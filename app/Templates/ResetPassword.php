@@ -4,14 +4,15 @@ namespace App\Templates;
 
 use Illuminate\Support\Facades\Validator;
 
-class Confirmation extends Base
+class ResetPassword extends Base
 {
-    protected static $template_id = 1066656;
+    protected static $template_id = 852568;
 
-    protected $subject = 'Account Confirm';
+    protected $subject = 'Reset Password';
+
+    protected $code = null;
 
     protected $link = null;
-
 
     public function __construct($data)
     {
@@ -26,6 +27,7 @@ class Confirmation extends Base
     {
         $validator = Validator::make($data, [
             'toEmail' => 'required|email',
+            'code' => 'required',
             'link' => 'required|url',
         ]);
         if ($validator->fails()) {
@@ -37,10 +39,9 @@ class Confirmation extends Base
 
     public function init($data)
     {
-        $this->link = $data['link'];
         $this->variables = [
-            "firstname" =>  $this->toName,
-            "link" =>  $this->link
+            "code" =>  $data['code'],
+            "link" =>  $data['link']
         ];
     }
 

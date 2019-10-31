@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\AccountCreate;
+use App\Events\ForgetPassword;
 use App\Listeners\AccountConfirm;
+use App\Listeners\ResetPassword;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         AccountCreate::class => [
             AccountConfirm::class
+        ],
+        ForgetPassword::class => [
+            ResetPassword::class
         ]
     ];
 

@@ -52,7 +52,7 @@ return [
             ]
         ],
         'From' => [
-            'Email' => "duyang48484848@gmail.com",
+            'Email' => "info@cruisewatch.com",
             'Name' => "Cruise Watch"
         ],
     ]
