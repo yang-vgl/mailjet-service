@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Events\AccountCreate;
 use App\Events\ForgetPassword;
+use App\Events\PriceChange;
 use App\Listeners\AccountConfirm;
+use App\Listeners\PriceAlert;
 use App\Listeners\ResetPassword;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ForgetPassword::class => [
             ResetPassword::class
+        ],
+        PriceChange::class => [
+            PriceAlert::class
         ]
     ];
 

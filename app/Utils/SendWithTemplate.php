@@ -12,6 +12,7 @@ trait SendWithTemplate
             return $template->getError();
         }
         $body = $template->getBody();
+        //print_r($body);exit;
         $response =  $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body]);
         if($response->success()){
             return $response->getData();

@@ -26,9 +26,22 @@ class PriceAlert extends Base
     public function validate(array $data)
     {
         $validator = Validator::make($data, [
-            'toEmail' => 'required|email',
-            'code' => 'required',
-            'link' => 'required|url',
+            'recipients.*.email' => 'required|email',
+            'recipients.*.name' => 'filled|string',
+            'fromEmail' => 'filled|email',
+            'fromName' => 'filled|string',
+            'links.details' => 'required|url',
+            'links.configure' => 'required|url',
+            'links.unsubscribe' => 'required|url',
+            'alert.trip_name' => 'required',
+            'alert.ship_name' => 'required',
+            'alert.departure_date' => 'required|date',
+            'alert.prices.*.is_drop' => 'required|boolean',
+            'alert.prices.*.cabin_type' => 'required',
+            'alert.prices.*.current' => 'required|numeric',
+            'alert.prices.*.change_abs' => 'required|numeric',
+            'alert.prices.*.change_rel' => 'required|numeric',
+            'alert.prices.*.updated_at' => 'required|date',
         ]);
         if ($validator->fails()) {
             $this->error = $validator->errors()->getMessages();
@@ -40,8 +53,8 @@ class PriceAlert extends Base
     public function init($data)
     {
         $this->variables = [
-            "code" =>  $data['code'],
-            "link" =>  $data['link']
+            "alert" =>  $data['alert'],
+            "links" =>  $data['links']
         ];
     }
 
@@ -54,25 +67,27 @@ class PriceAlert extends Base
     }
 
     public function getBody() {
-        $body = [
-            'Messages' => [
-                [
+        foreach($this->recipients as $recipient){
+            $recipientName = isset($recipient['name']) ? $recipient['name'] : $this->firstName;
+            $message[] = [
                     'From' => [
                         'Email' => $this->fromEmail,
                         'Name' => $this->fromName
                     ],
                     'To' => [
                         [
-                            'Email' =>  $this->toEmail,
-                            'Name' => $this->toName
+                            'Email' => $recipient['email'],
+                            'Name' => $recipientName
                         ]
                     ],
                     'TemplateID' => self::$template_id,
                     'TemplateLanguage' => true,
                     'Subject' => $this->subject,
-                    'Variables' => $this->variables
-                ]
-            ]
+                    'Variables' => array_merge($this->variables, ['firstname' => $recipientName])
+            ];
+        }
+        $body = [
+            'Messages' => $message
         ];
         return $body;
     }

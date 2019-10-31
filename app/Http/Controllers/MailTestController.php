@@ -6,6 +6,7 @@ use App\Console\Commands\AccountConfirm;
 use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionalContract;
 use App\Events\AccountCreate;
+use App\Events\PriceChange;
 use App\Services\AccountConfirmationService;
 use App\Services\Base\MailjetV3Service;
 use App\Services\ResetPasswordService;
@@ -32,6 +33,7 @@ class MailTestController extends Controller
         $this->mjV3 = $mjV3;
         $this->sync = $sync;
     }
+
     public function testDependency()
     {
         var_dump($this->mjV31);
@@ -40,17 +42,50 @@ class MailTestController extends Controller
     public function testSend()
     {
         $data = [
-            'link' => "https://www.google.com",
             'subject' => 'test subject',
-            'code' => 'ioj89rji3jf983jf983j9f',
+            //'fromEmail' => '',
+            'fromName' => '1111',
+            "links"=> [
+                'details' => 'http://www.google.com',
+                "configure"=>"http://www.google.com",
+                "unsubscribe"=>"http://www.google.com"
+            ],
+            "alert" => [
+                "trip_name"=>"11",
+                "ship_name"=>"11",
+                "departure_date"=>"2019/12/12 12:01:12",
+                "prices"=> [
+                    [
+                        'is_drop' => 1,
+                        'cabin_type' =>'1',
+                        'current' => 11.121,
+                        'change_abs' => 1,
+                        'change_rel' => 2,
+                        'updated_at' => '2019/12/12',
+                    ],
+                    [
+                        'is_drop' => 0,
+                        'cabin_type' =>'good cabin',
+                        'current' => 1100,
+                        'change_abs' => 100,
+                        'change_rel' => 2,
+                        'updated_at' => '2019/12/12',
+                    ]
+                ]
+            ],
             'recipients' =>[
+                [
                     'email' => 'duyanguk@163.com',
                     'name' => 'Yang'
+                ],
+                [
+                    'email' => 'duyang48484848@gmail.com',
+                ],
             ]
         ];
-        $res = $this->sync->send($data);
-        print_r($res);exit;
-        //event(new AccountCreate($data));exit;
+//        $res = $this->sync->send($data);
+//        print_r($res);exit;
+        event(new PriceChange($data));exit;
 //        $confirm = new Confirmation();
 //        if($confirm->getError()){
 //            return $confirm->getError();
@@ -67,6 +102,44 @@ class MailTestController extends Controller
                     'To' => [
                         [
                             'Email' => "duyanguk@163.com",
+                            'Name' => "You"
+                        ]
+                    ],
+                    'TemplateID' => 1066812,
+                    'TemplateLanguage' => true,
+                    'Subject' => "We have a new price alert for you",
+                    'Variables' => [
+                        "firstname" => "Cruiser",
+                        "links"=> [
+                            'details' => 'http://www.google.com',
+                            "configure"=>"http://www.google.com",
+                            "unsubscribe"=>"http://www.google.com"
+                        ],
+                        "alert" => [
+                            "trip_name"=>"11",
+                            "ship_name"=>"11",
+                            "departure_date"=>"2019/12/12",
+                            "prices"=> [
+                                [
+                                    'is_drop' => 1,
+                                    'cabin_type' =>'1',
+                                    'current' => 11,
+                                    'change_abs' => 1,
+                                    'change_rel' => 2,
+                                    'updated_at' => '1',
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    'From' => [
+                        'Email' => "info@cruisewatch.com",
+                        'Name' => "Cruise Watch"
+                    ],
+                    'To' => [
+                        [
+                            'Email' => "duyang48484848@gmail.com",
                             'Name' => "You"
                         ]
                     ],

@@ -12,7 +12,7 @@ class Confirmation extends Base
 
     protected $link = null;
 
-    protected $firstName = 'cruiser';
+
 
     public function __construct($data)
     {

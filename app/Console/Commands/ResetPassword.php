@@ -42,13 +42,15 @@ class ResetPassword extends Command
         $subject = $this->ask('Enter Subject:', 'Reset Password');
         $fromEmail = $this->ask("Enter From Email():", config('services.mailjet.From.Email'));
         $fromName = $this->ask("Enter From Name():", config('services.mailjet.From.Name'));
-        $toEmail = $this->ask('enter To email(required):');
-        $toName = $this->ask('Enter To Name(optional):');
+        $toEmail = $this->ask('enter recipient\'s email(required):');
+        $toName = $this->ask('Enter recipient\'s Name(optional):');
         $code = $this->ask('Enter Activate Code(required):');
         $link = $this->ask('Enter Reset Link(required):');
         $data = [
-            'toEmail' => $toEmail,
-            'toName' => $toName,
+            'recipients' =>[
+                'email' => $toEmail,
+                'name' => $toName
+            ],
             'fromEmail' => $fromEmail,
             'fromName' => $fromName,
             'code' => $code,

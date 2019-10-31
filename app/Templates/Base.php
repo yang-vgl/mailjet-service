@@ -18,6 +18,8 @@ class Base
 
     protected $error = [];
 
+    protected $firstName = 'cruiser';
+
     public function baseInit($data)
     {
 
@@ -31,7 +33,7 @@ class Base
         {
             $this->fromEmail = $data['fromEmail'];
         }else{
-            $this->fromName = config('services.mailjet.From.Email');
+            $this->fromEmail = config('services.mailjet.From.Email');
         }
         if(isset($data['subject']))
         {
