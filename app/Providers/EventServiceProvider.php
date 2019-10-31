@@ -8,6 +8,7 @@ use App\Events\PriceChange;
 use App\Listeners\AccountConfirm;
 use App\Listeners\PriceAlert;
 use App\Listeners\ResetPassword;
+use App\Listeners\Welcome;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         AccountCreate::class => [
             AccountConfirm::class
+        ],
+        \App\Events\AccountConfirm::class => [
+            Welcome::class
         ],
         ForgetPassword::class => [
             ResetPassword::class
