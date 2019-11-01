@@ -17,7 +17,6 @@ class WelcomeService
     /**
      * Create the event listener.
      * @param MailTransactionalContract $mjV31
-     * @param Confirmation $template
      */
     public function __construct( MailTransactionalContract $mjV31)
     {
