@@ -15,7 +15,6 @@ class Contact
     const NAME_KEY = 'Name';
     const ACTION_KEY = 'Action';
     const PROPERTIES_KEY = 'Properties';
-    const IS_EXCLUDED_FROM_CAMPAIGNS_KEY = 'IsExcludedFromCampaigns';
     protected $email;
     protected $name;
     protected $isExcludedFromCampaigns = true;

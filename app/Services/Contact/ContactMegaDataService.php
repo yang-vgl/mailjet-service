@@ -4,9 +4,10 @@ namespace App\Services\Contact;
 
 use App\Contracts\MailCommonContract;
 use App\Models\Contact;
+use App\Models\ContactMetaData;
 use Mailjet\Resources;
 
-class ContactService
+class ContactMegaDataService
 {
     protected $mjV3;
 
@@ -17,12 +18,12 @@ class ContactService
 
     public function create($data)
     {
-        $contact = new Contact($data);
-        $res = $this->mjV3->getClient()->post(Resources::$Contact, ['body' => [
-            'Email' =>  $contact->getEmail(),
-            'Name'  =>  $contact->getName(),
-            'IsExcludedFromCampaigns' =>  $contact->getIsExcludedFromCampaigns()
+        $res =  ContactMetaData::validate($data);
+        $res =  $this->mjV3->getClient()->post(Resources::$Contactmetadata, ['body' => [
+            'Datatype' => $data['dataType'],
+            'Name' => $data['name'],
         ]]);
+        //$response->success() && var_dump($response->getData());
         //$res->getStatus()
         print_r($res);exit;
     }

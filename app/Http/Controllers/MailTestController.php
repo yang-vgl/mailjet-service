@@ -9,6 +9,7 @@ use App\Events\AccountCreate;
 use App\Events\PriceChange;
 use App\Services\AccountConfirmationService;
 use App\Services\Base\MailjetV3Service;
+use App\Services\Contact\ContactMegaDataService;
 use App\Services\Contact\ContactService;
 use App\Services\ResetPasswordService;
 use App\Services\SyncTemplateService;
@@ -200,9 +201,12 @@ class MailTestController extends Controller
             'IsExcludedFromCampaigns' => 1,
             'Name' => "New Contact"
         ];
-
-        $contact = new ContactService($this->mjV3);
+        $data = [
+            'dataType' => "str",
+            'name' => "first_name",
+        ];
+        $contact = new ContactMegaDataService($this->mjV3);
         //print_r($contact);exit;
-        $contact->update($data);
+        $contact->create($data);
     }
 }
