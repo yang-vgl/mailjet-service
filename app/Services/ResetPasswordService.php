@@ -5,14 +5,14 @@ namespace App\Services;
 use App\Contracts\MailTransactionalContract;
 use App\Templates\Confirmation;
 use App\Templates\ResetPassword;
-use App\Utils\SendWithTemplate;
+use App\Utils\Common;
 use Mailjet\Resources;
 
 class ResetPasswordService
 {
     protected $mjV31;
 
-    use SendWithTemplate;
+    use Common;
 
     /**
      * Create the event listener.

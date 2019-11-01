@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+use App\Utils\Common;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -7,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
  */
 class Contact
 {
+    use Common;
+
     const ACTION_ADDFORCE = 'addforce'; # adds the contact and resets the unsub status to false
     const ACTION_ADDNOFORCE = 'addnoforce'; # adds the contact and does not change the subscription status of the contact
     const ACTION_REMOVE = 'remove'; # removes the contact from the list
@@ -21,6 +24,7 @@ class Contact
     protected $optionalProperties;
     protected $action;
     protected $error;
+
 
     public function __construct($data)
     {
@@ -50,7 +54,7 @@ class Contact
             'id' => 'required|integer',
         ]);
         if ($validator->fails()) {
-          return ['status' => false, 'msg' => $validator->errors()->getMessages()];
+            return self::response(false,  $validator->errors()->getMessages(), '');
         }
         return ['status' => true];
     }
@@ -63,11 +67,27 @@ class Contact
             'name'=> 'filled|string'
         ]);
         if ($validator->fails()) {
-            return ['status' => false, 'msg' => $validator->errors()->getMessages()];
+            return self::response(false,  $validator->errors()->getMessages(), '');
         }
         unset($data['id']);
-        return ['status' => true, 'msg' => '', 'data' => $data];
+        return self::response(true,  $validator->errors()->getMessages(), $data);
     }
+
+    public static function validateCreate($data)
+    {
+        $validator = Validator::make($data, [
+            'email' => 'required|email',
+            'name' => 'filled|string',
+            'isExcludedFromCampaigns' => 'filled|boolean',
+        ]);
+        if ($validator->fails()) {
+            return false;
+        }
+        return true;
+    }
+
+
+
 
     public function init($data)
     {

@@ -28,7 +28,7 @@ class ResetPassword
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param ForgetPassword $event
      * @return void
      */
     public function handle(ForgetPassword $event)

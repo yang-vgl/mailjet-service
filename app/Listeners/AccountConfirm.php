@@ -26,14 +26,12 @@ class AccountConfirm
 
     /**
      * Handle the event.
-     *
-     * @param  object  $event
+     * @param AccountCreate $event
      * @return void
      */
     public function handle(AccountCreate $event)
     {
         Log::info("email sent through event-listener");
-        //$this->trans->testSend($this->mjV31);
         $res = $this->service->send($event->data);
         print_r($res);exit;
     }

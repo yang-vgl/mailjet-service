@@ -17,8 +17,9 @@ class ContactService
 
     public function create($data)
     {
+        $res = Contact::validateCreate($data);
         $contact = new Contact($data);
-        $res = $this->mjV3->getClient()->post(Resources::$Contact, ['body' => [
+        $res = $this->mjV3->post(Resources::$Contact, ['body' => [
             'Email' =>  $contact->getEmail(),
             'Name'  =>  $contact->getName(),
             'IsExcludedFromCampaigns' =>  $contact->getIsExcludedFromCampaigns()
@@ -29,14 +30,14 @@ class ContactService
 
     public function getAll()
     {
-        $res = $this->mjV3->getClient()->get(Resources::$Contact);
+        $res = $this->mjV3->get(Resources::$Contact);
         //$res->getStatus()
         print_r($res->getData());exit;
     }
 
     public function get($id)
     {
-            $res = $this->mjV3->getClient()->get(Resources::$Contact, ['id' => $id]);
+            $res = $this->mjV3->get(Resources::$Contact, ['id' => $id]);
             print_r($res->getData());exit;
     }
 
@@ -47,7 +48,7 @@ class ContactService
         if(!$res['status']){
             return $res;
         }
-        $res = $this->mjV3->getClient()->put(Resources::$Contact, ['id' => $data['id'], 'body' => $res['data']]);
+        $res = $this->mjV3->put(Resources::$Contact, ['id' => $data['id'], 'body' => $res['data']]);
         print_r($res);exit;
     }
 

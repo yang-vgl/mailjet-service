@@ -28,7 +28,7 @@ class Welcome
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param AccountConfirmEvent $event
      * @return void
      */
     public function handle(AccountConfirmEvent $event)

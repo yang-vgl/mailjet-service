@@ -205,8 +205,8 @@ class MailTestController extends Controller
             'dataType' => "str",
             'name' => "first_name",
         ];
-        $contact = new ContactMegaDataService($this->mjV3);
+        $contact = new ContactService($this->mjV3);
         //print_r($contact);exit;
-        $contact->create($data);
+        $contact->getAll();
     }
 }

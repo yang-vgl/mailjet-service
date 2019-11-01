@@ -18,7 +18,7 @@ class PriceAlert
 {
     protected $service;
 
-    /**s
+    /**
      * Create the event listener.
      * @param PriceAlertService $service
      */
@@ -36,7 +36,6 @@ class PriceAlert
     public function handle(PriceChange $event)
     {
         Log::info("price alert email sent through event-listener");
-        //$this->trans->testSend($this->mjV31);
         $res = $this->service->send($event->data);
         print_r($res);exit;
     }

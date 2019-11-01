@@ -3,16 +3,14 @@
 namespace App\Services;
 
 use App\Contracts\MailTransactionalContract;
-use App\Templates\Confirmation;
 use App\Templates\Welcome;
-use App\Utils\SendWithTemplate;
-use Mailjet\Resources;
+use App\Utils\Common;
 
 class WelcomeService
 {
     protected $mjV31;
 
-    use SendWithTemplate;
+    use Common;
 
     /**
      * Create the event listener.

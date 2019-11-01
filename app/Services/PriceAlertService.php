@@ -6,14 +6,14 @@ use App\Contracts\MailTransactionalContract;
 use App\Templates\Confirmation;
 use App\Templates\PriceAlert;
 use App\Templates\ResetPassword;
-use App\Utils\SendWithTemplate;
+use App\Utils\Common;
 use Mailjet\Resources;
 
 class PriceAlertService
 {
     protected $mjV31;
 
-    use SendWithTemplate;
+    use Common;
 
     /**
      * Create the event listener.

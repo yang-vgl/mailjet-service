@@ -4,19 +4,18 @@ namespace App\Services;
 
 use App\Contracts\MailTransactionalContract;
 use App\Templates\Confirmation;
-use App\Utils\SendWithTemplate;
+use App\Utils\Common;
 use Mailjet\Resources;
 
 class AccountConfirmationService
 {
     protected $mjV31;
 
-    use SendWithTemplate;
+    use Common;
 
     /**
      * Create the event listener.
      * @param MailTransactionalContract $mjV31
-     * @param Confirmation $template
      */
     public function __construct( MailTransactionalContract $mjV31)
     {
@@ -26,7 +25,7 @@ class AccountConfirmationService
     public function send(array $data)
     {
         $res = $this->sendWithTemplate(new Confirmation($data));
-        print_r($res);exit;
+        return $res;
     }
 
 }
