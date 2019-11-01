@@ -9,6 +9,7 @@ use App\Events\AccountCreate;
 use App\Events\PriceChange;
 use App\Services\AccountConfirmationService;
 use App\Services\Base\MailjetV3Service;
+use App\Services\Contact\ContactService;
 use App\Services\ResetPasswordService;
 use App\Services\SyncTemplateService;
 use App\Templates\Confirmation;
@@ -19,6 +20,7 @@ class MailTestController extends Controller
     protected $mjV31;
     protected $mjV3;
     protected $sync;
+    protected $contact;
 
     /**
      * Create a new controller instance.
@@ -188,5 +190,19 @@ class MailTestController extends Controller
         $response = $this->mjV3->getClient()->get(Resources::$Template, ['id' => 850961]);
         print_r($response);exit;
         $response->success() && var_dump($response->getData());
+    }
+
+    public function testContact()
+    {
+
+        $data = [
+            'id' => 1970065886,
+            'IsExcludedFromCampaigns' => 1,
+            'Name' => "New Contact"
+        ];
+
+        $contact = new ContactService($this->mjV3);
+        //print_r($contact);exit;
+        $contact->update($data);
     }
 }

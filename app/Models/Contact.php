@@ -1,5 +1,7 @@
 <?php
 namespace App\Models;
+use Illuminate\Support\Facades\Validator;
+
 /**
  * Only email is required
  */
@@ -13,15 +15,71 @@ class Contact
     const NAME_KEY = 'Name';
     const ACTION_KEY = 'Action';
     const PROPERTIES_KEY = 'Properties';
+    const IS_EXCLUDED_FROM_CAMPAIGNS_KEY = 'IsExcludedFromCampaigns';
     protected $email;
     protected $name;
+    protected $isExcludedFromCampaigns = true;
     protected $optionalProperties;
     protected $action;
+    protected $error;
 
-    public function __construct($email, array $optionalProperties = [])
+    public function __construct($data)
     {
-        $this->email = $email;
-        $this->optionalProperties = $optionalProperties;
+        if($this->validate($data))
+        {
+            $this->init($data);
+        }
+    }
+
+    public function validate($data)
+    {
+        $validator = Validator::make($data, [
+            'email' => 'required|email',
+            'name' => 'filled|string',
+            'isExcludedFromCampaigns' => 'filled|boolean',
+        ]);
+        if ($validator->fails()) {
+            $this->error = $validator->errors()->getMessages();
+            return false;
+        }
+        return true;
+    }
+
+    public static function validateGet($id)
+    {
+        $validator = Validator::make($id, [
+            'id' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+          return ['status' => false, 'msg' => $validator->errors()->getMessages()];
+        }
+        return ['status' => true];
+    }
+
+    public static function validateUpdate($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|integer',
+            'IsExcludedFromCampaigns'=> 'filled|boolean',
+            'name'=> 'filled|string'
+        ]);
+        if ($validator->fails()) {
+            return ['status' => false, 'msg' => $validator->errors()->getMessages()];
+        }
+        unset($data['id']);
+        return ['status' => true, 'msg' => '', 'data' => $data];
+    }
+
+    public function init($data)
+    {
+        $this->setEmail($data['email']);
+        if(isset($data['name'])){
+            $this->setName($data['name']);
+        }
+        if(isset($data['isExcludedFromCampaigns'])){
+            $this->setIsExcludedFromCampaigns($data['isExcludedFromCampaigns']);
+        }
+
     }
     /**
      * Formate contact for MailJet API request
@@ -64,7 +122,7 @@ class Contact
      */
     public function getName()
     {
-        return $this->optionalProperties[self::NAME_KEY];
+        return $this->name;
     }
     /**
      * Set contact name
@@ -73,7 +131,22 @@ class Contact
      */
     public function setName($name)
     {
-        $this->optionalProperties[self::NAME_KEY] = $name;
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getIsExcludedFromCampaigns()
+    {
+        return $this->isExcludedFromCampaigns;
+    }
+    /**
+     * Set contact name
+     * @param string $name
+     * @return Contact
+     */
+    public function setIsExcludedFromCampaigns($bool)
+    {
+        $this->optionalProperties[self::IS_EXCLUDED_FROM_CAMPAIGNS_KEY] = $bool;
         return $this;
     }
     /**
@@ -121,4 +194,5 @@ class Contact
     {
         return array_filter($this->optionalProperties);
     }
+
 }
