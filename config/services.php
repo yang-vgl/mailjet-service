@@ -55,6 +55,11 @@ return [
             'Email' => "info@cruisewatch.com",
             'Name' => "Cruise Watch"
         ],
+        'callback' => [
+            'username' => 'username',
+            'password' => 'password'
+        ]
+
     ]
 
 ];

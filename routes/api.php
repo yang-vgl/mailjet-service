@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth.base')->post('mailjet/callback', 'MailjetCallbackController@callBack');
+
+Route::middleware('auth.basic')->get('mailjet/test', 'MailjetCallbackController@test');
+

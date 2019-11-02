@@ -22,3 +22,5 @@ Route::get('/test/get', 'MailTestController@testGet');
 Route::get('/test/temp', 'MailTestController@testTemp');
 
 Route::get('/test/contact', 'MailTestController@testContact');
+
+//Route::post('/api/mailjet/callback', 'MailjetCallbackController@callBack');

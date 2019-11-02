@@ -14,6 +14,7 @@ use App\Services\Contact\ContactService;
 use App\Services\ResetPasswordService;
 use App\Templates\Confirmation;
 use App\Utils\Common;
+use Illuminate\Http\Request;
 use Mailjet\Resources;
 
 class MailTestController extends Controller
@@ -42,8 +43,10 @@ class MailTestController extends Controller
         var_dump($this->mjV31);
     }
 
-    public function testSend()
+    public function testSend(Request $request)
+
     {
+        print_r($request->all());exit;
 //        $data = [
 //            'subject' => 'test subject',
 //            //'fromEmail' => '',

@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Console\Commands;
-
-use App\Events\AccountCreate;
 use App\Events\ForgetPassword;
 use Illuminate\Console\Command;
 
