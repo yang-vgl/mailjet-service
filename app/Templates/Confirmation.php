@@ -12,8 +12,6 @@ class Confirmation extends Base
 
     protected $link = null;
 
-
-
     public function __construct($data)
     {
         if($this->validate($data))

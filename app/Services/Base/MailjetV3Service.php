@@ -35,22 +35,34 @@ class MailjetV3Service implements MailCommonContract
         return $this->client;
     }
 
+    public function post($resource, array $args = [], array $options = [])
+    {
+        try{
+            $response = $this->client->post($resource, $args, $options);
+        }catch(\Exception $e){
+            return [false, $e->getMessage()];
+        }
+        return [true, $response];
+    }
+
     public function get($resource, array $args = [], array $options = [])
     {
-        $response = $this->client->get($resource, $args, $options);
-        if (!$response->success()) {
-            $this->throwError("MailjetService:get() failed", $response);
+        try{
+            $response = $this->client->get($resource, $args, $options);
+        }catch(\Exception $e){
+            return [false, $e->getMessage()];
         }
-        return $response;
+        return [true, $response];
     }
 
     public function put($resource, array $args = [], array $options = [])
     {
-        $response = $this->client->get($resource, $args, $options);
-        if (!$response->success()) {
-            $this->throwError("MailjetService:get() failed", $response);
+        try{
+            $response = $this->client->put($resource, $args, $options);
+        }catch(\Exception $e){
+            return [false, $e->getMessage()];
         }
-        return $response;
+        return [true, $response];
     }
 
 

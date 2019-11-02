@@ -25,6 +25,12 @@ trait Common
         }
     }
 
+    public function sendCommon($body)
+    {
+        $response =  $this->mjV3->post(Resources::$Email, ['body' => $body]);
+
+    }
+
     public static function response($status, $msg='', $data='')
     {
         return json_encode([

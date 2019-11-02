@@ -200,14 +200,24 @@ class MailTestController extends Controller
         $data = [
             'id' => 1970065886,
             'IsExcludedFromCampaigns' => 1,
-            'Name' => "New Contact"
+            'Name' => "New Contact 1"
         ];
-        $data = [
+        $megaData = [
             'dataType' => "str",
-            'name' => "first_name",
+            'name' => "last_name",
         ];
-        $contact = new ContactService($this->mjV3);
+        $megaUpdateData = [
+            'email' => 'duyang48484848@gmail.com',
+            'data' => [
+                [
+                    'Name' => "last_name",
+                    'Value' => "Doe2"
+                ]
+            ]
+        ];
+        $contact = new ContactMegaDataService($this->mjV3);
         //print_r($contact);exit;
-        $contact->getAll();
+        $res = $contact->update($megaUpdateData);
+        print_r($res);exit;
     }
 }

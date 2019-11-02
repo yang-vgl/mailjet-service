@@ -18,7 +18,7 @@ class ContactMetaData
 
     }
 
-    public static function validate($data)
+    public static function validateCreate($data)
     {
         $validator = Validator::make($data, [
             'name' => 'required|string',
@@ -28,9 +28,22 @@ class ContactMetaData
             ]
         ]);
         if ($validator->fails()) {
-            return ['status' => false, 'msg' => $validator->errors()->getMessages(), 'data' => ''];
+            return [false, $validator->errors()->getMessages()];
         }
-        return ['status' => true, 'msg' => ''];
+        return [true];
+    }
+
+    public static function validateUpdate($data)
+    {
+        $validator = Validator::make($data, [
+            'email' => 'required|email',
+            'data.*.Name' => 'required',
+            'data.*.Value' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return [false, $validator->errors()->getMessages()];
+        }
+        return [true];
     }
 
 }

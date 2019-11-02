@@ -5,10 +5,13 @@ namespace App\Services\Contact;
 use App\Contracts\MailCommonContract;
 use App\Models\Contact;
 use App\Models\ContactMetaData;
+use App\Utils\Common;
 use Mailjet\Resources;
 
 class ContactMegaDataService
 {
+    use Common;
+
     protected $mjV3;
 
     public function __construct(MailCommonContract $mjV3)
@@ -18,38 +21,33 @@ class ContactMegaDataService
 
     public function create($data)
     {
-        $res =  ContactMetaData::validate($data);
-        $res =  $this->mjV3->getClient()->post(Resources::$Contactmetadata, ['body' => [
+        $res =  ContactMetaData::validateCreate($data);
+        if(!$res[0]){
+            return $this->response(false, $res[1]);
+        }
+        $res =  $this->mjV3->post(Resources::$Contactmetadata, ['body' => [
             'Datatype' => $data['dataType'],
             'Name' => $data['name'],
         ]]);
-        //$response->success() && var_dump($response->getData());
-        //$res->getStatus()
-        print_r($res);exit;
-    }
-
-    public function getAll()
-    {
-        $res = $this->mjV3->getClient()->get(Resources::$Contact);
-        //$res->getStatus()
-        print_r($res->getData());exit;
-    }
-
-    public function get($id)
-    {
-            $res = $this->mjV3->getClient()->get(Resources::$Contact, ['id' => $id]);
-            print_r($res->getData());exit;
+        if(!$res[0]){
+            return $this->response(false, $res[1]);
+        }
+        return $this->response($res[0], '', $res[1]->getData());
     }
 
     public function update($data)
     {
-
-        $res = Contact::validateUpdate($data);
-        if(!$res['status']){
-            return $res;
+        $res =  ContactMetaData::validateUpdate($data);
+        if(!$res[0]){
+            return $this->response(false, $res[1]);
         }
-        $res = $this->mjV3->getClient()->put(Resources::$Contact, ['id' => $data['id'], 'body' => $res['data']]);
-        print_r($res);exit;
+        $res = $this->mjV3->put(Resources::$Contactdata, ['id' =>$data['email'], 'body' =>[
+            'Data' =>  $data['data']
+        ]]);
+        if(!$res[0]){
+            return $this->response(false, $res[1]);
+        }
+        return $this->response($res[0], '', $res[1]->getData());
     }
 
 }
