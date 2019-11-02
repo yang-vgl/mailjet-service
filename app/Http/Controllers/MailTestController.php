@@ -12,8 +12,8 @@ use App\Services\Base\MailjetV3Service;
 use App\Services\Contact\ContactMegaDataService;
 use App\Services\Contact\ContactService;
 use App\Services\ResetPasswordService;
-use App\Services\SyncTemplateService;
 use App\Templates\Confirmation;
+use App\Utils\Common;
 use Mailjet\Resources;
 
 class MailTestController extends Controller
@@ -44,51 +44,51 @@ class MailTestController extends Controller
 
     public function testSend()
     {
-        $data = [
-            'subject' => 'test subject',
-            //'fromEmail' => '',
-            'fromName' => '1111',
-            "links"=> [
-                'details' => 'http://www.google.com',
-                "configure"=>"http://www.google.com",
-                "unsubscribe"=>"http://www.google.com"
-            ],
-            "alert" => [
-                "trip_name"=>"11",
-                "ship_name"=>"11",
-                "departure_date"=>"2019/12/12 12:01:12",
-                "prices"=> [
-                    [
-                        'is_drop' => 1,
-                        'cabin_type' =>'1',
-                        'current' => 11.121,
-                        'change_abs' => 1,
-                        'change_rel' => 2,
-                        'updated_at' => '2019/12/12',
-                    ],
-                    [
-                        'is_drop' => 0,
-                        'cabin_type' =>'good cabin',
-                        'current' => 1100,
-                        'change_abs' => 100,
-                        'change_rel' => 2,
-                        'updated_at' => '2019/12/12',
-                    ]
-                ]
-            ],
-            'recipients' =>[
-                [
-                    'email' => 'duyanguk@163.com',
-                    'name' => 'Yang'
-                ],
-                [
-                    'email' => 'duyang48484848@gmail.com',
-                ],
-            ]
-        ];
+//        $data = [
+//            'subject' => 'test subject',
+//            //'fromEmail' => '',
+//            'fromName' => '1111',
+//            "links"=> [
+//                'details' => 'http://www.google.com',
+//                "configure"=>"http://www.google.com",
+//                "unsubscribe"=>"http://www.google.com"
+//            ],
+//            "alert" => [
+//                "trip_name"=>"11",
+//                "ship_name"=>"11",
+//                "departure_date"=>"2019/12/12 12:01:12",
+//                "prices"=> [
+//                    [
+//                        'is_drop' => 1,
+//                        'cabin_type' =>'1',
+//                        'current' => 11.121,
+//                        'change_abs' => 1,
+//                        'change_rel' => 2,
+//                        'updated_at' => '2019/12/12',
+//                    ],
+//                    [
+//                        'is_drop' => 0,
+//                        'cabin_type' =>'good cabin',
+//                        'current' => 1100,
+//                        'change_abs' => 100,
+//                        'change_rel' => 2,
+//                        'updated_at' => '2019/12/12',
+//                    ]
+//                ]
+//            ],
+//            'recipients' =>[
+//                [
+//                    'email' => 'duyanguk@163.com',
+//                    'name' => 'Yang'
+//                ],
+//                [
+//                    'email' => 'duyang48484848@gmail.com',
+//                ],
+//            ]
+//        ];
 //        $res = $this->sync->send($data);
 //        print_r($res);exit;
-        event(new PriceChange($data));exit;
+        //event(new PriceChange($data));exit;
 //        $confirm = new Confirmation();
 //        if($confirm->getError()){
 //            return $confirm->getError();
@@ -99,7 +99,7 @@ class MailTestController extends Controller
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => "info@cruisewatch.com",
+                        'Email' => "dadas",
                         'Name' => "Cruise Watch"
                     ],
                     'To' => [
@@ -135,49 +135,50 @@ class MailTestController extends Controller
                         ]
                     ]
                 ],
-                [
-                    'From' => [
-                        'Email' => "info@cruisewatch.com",
-                        'Name' => "Cruise Watch"
-                    ],
-                    'To' => [
-                        [
-                            'Email' => "duyang48484848@gmail.com",
-                            'Name' => "You"
-                        ]
-                    ],
-                    'TemplateID' => 1066812,
-                    'TemplateLanguage' => true,
-                    'Subject' => "We have a new price alert for you",
-                    'Variables' => [
-                        "firstname" => "Cruiser",
-                        "links"=> [
-                            'details' => 'http://www.google.com',
-                            "configure"=>"http://www.google.com",
-                            "unsubscribe"=>"http://www.google.com"
-                        ],
-                        "alert" => [
-                            "trip_name"=>"11",
-                            "ship_name"=>"11",
-                            "departure_date"=>"2019/12/12",
-                            "prices"=> [
-                                [
-                                    'is_drop' => 1,
-                                    'cabin_type' =>'1',
-                                    'current' => 11,
-                                    'change_abs' => 1,
-                                    'change_rel' => 2,
-                                    'updated_at' => '1',
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+//                [
+//                    'From' => [
+//                        'Email' => "info@cruisewatch.com",
+//                        'Name' => "Cruise Watch"
+//                    ],
+//                    'To' => [
+//                        [
+//                            'Email' => "duyang48484848@gmail.com",
+//                            'Name' => "You"
+//                        ]
+//                    ],
+//                    'TemplateID' => 1066812,
+//                    'TemplateLanguage' => true,
+//                    'Subject' => "We have a new price alert for you",
+//                    'Variables' => [
+//                        "firstname" => "Cruiser",
+//                        "links"=> [
+//                            'details' => 'http://www.google.com',
+//                            "configure"=>"http://www.google.com",
+//                            "unsubscribe"=>"http://www.google.com"
+//                        ],
+//                        "alert" => [
+//                            "trip_name"=>"11",
+//                            "ship_name"=>"11",
+//                            "departure_date"=>"2019/12/12",
+//                            "prices"=> [
+//                                [
+//                                    'is_drop' => 1,
+//                                    'cabin_type' =>'1',
+//                                    'current' => 11,
+//                                    'change_abs' => 1,
+//                                    'change_rel' => 2,
+//                                    'updated_at' => '1',
+//                                ]
+//                            ]
+//                        ]
+//                    ]
+//                ]
             ]
         ];
-        $response = $this->mjV31->getClient()->post(Resources::$Email, ['body' => $body1]);
-        print_r($response);exit;
-        $response->success() && var_dump($response->getData());
+        $response = $this->mjV31->post(Resources::$Email, ['body' => $body1]);
+        print_r($response);
+        exit;
+        //$response->success() && var_dump($response->getData());
     }
 
     public function testGet()

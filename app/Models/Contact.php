@@ -81,9 +81,9 @@ class Contact
             'isExcludedFromCampaigns' => 'filled|boolean',
         ]);
         if ($validator->fails()) {
-            return false;
+            return self::response(false,  $validator->errors()->getMessages());
         }
-        return true;
+        return self::response(true);
     }
 
 

@@ -18,6 +18,7 @@ class ContactService
     public function create($data)
     {
         $res = Contact::validateCreate($data);
+        if($res)
         $contact = new Contact($data);
         $res = $this->mjV3->post(Resources::$Contact, ['body' => [
             'Email' =>  $contact->getEmail(),

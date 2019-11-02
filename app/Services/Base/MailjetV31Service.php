@@ -8,6 +8,7 @@ use Mailjet\Response;
 
 class MailjetV31Service implements MailTransactionalContract
 {
+
     private $client;
 
     /**
@@ -41,15 +42,16 @@ class MailjetV31Service implements MailTransactionalContract
      * @param array $args Request arguments
      * @param array $options
      *
-     * @return Response
+     * @return array
      */
     public function post($resource, array $args = [], array $options = [])
     {
-        $response = $this->client->post($resource, $args, $options);
-        if (!$response->success()) {
-            $this->throwError("MailjetService:post() failed", $response);
+        try{
+            $response = $this->client->post($resource, $args, $options);
+        }catch(\Exception $e){
+            return [false, $e->getMessage()];
         }
-        return $response;
+        return [true, $response];
     }
     /**
      * Trigger a GET request

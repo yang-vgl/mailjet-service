@@ -14,10 +14,14 @@ trait Common
         $body = $template->getBody();
         //print_r($body);exit;
         $response =  $this->mjV31->post(Resources::$Email, ['body' => $body]);
-        if($response->success()){
-            return $this->response(true, '', $response->getData());
+        if($response[0]){
+            if($response[1]->success()){
+                return $this->response(true, '', $response[1]->getData());
+            }else{
+                return $this->response(false, $response[1]->getBody());
+            }
         }else{
-            return $this->response(false, $response->getBody());
+            return $this->response(false, $response[1]);
         }
     }
 
