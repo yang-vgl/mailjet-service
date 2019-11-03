@@ -1,6 +1,3 @@
-<style>
-.red {color: red}
-</style>
 # Mailjet Email Service
     
 * ### [Installation](#installation_anchor)
@@ -22,6 +19,8 @@
         * ##### [Welcome Email](#welcome_email)
         * ##### [Reset Password Email](#reset_password_email)
         * ##### [Price Alert Email](#price_alert_email)
+   * #### [Contacts](#contacts_anchor)
+   * #### [Contacts Attributes](#contacts_attributes_anchor)
 * ### [Tests](#tests)
     * [Email Services Test](#email_services_test)
     * [Contact Services Test](#contact_services_test)
@@ -296,4 +295,81 @@ All services return same formation of standardized response
             ...
         ]
     ];  
+
+<a name="contacts_anchor"><h3>Contacts</h3></a>
+ > 
+    $contact = new ContactService(MailCommonContract $mjV3);
+
+get:
+ > 
+    $contact->get($id);
+    
+ > Parameters
+
+    $id : "duyanguk@163.com"  //email or contact id
+          
+getAll:
+ > 
+    $contact->getAll();
+    
+create new contact:
+ > 
+    $contact->create($data);
+    
+ > Parameters
+
+    $data = [
+        'email' => 'duyanguk1@163.com',  //(required)
+        'IsExcludedFromCampaigns' => 1,  //(optional)
+        'Name' => "Yang Du"              //(optional)
+    ];  
+    
+update an existing contact:
+ > 
+    $contact->update($data);
+    
+ > Parameters
+
+    $data = [
+        'email' => 'duyanguk1@163.com',  //(required) email or contact id
+        'IsExcludedFromCampaigns' => 1,  //(optional)
+        'Name' => "Yang Du"              //(optional)
+    ];  
+    
+<a name="contacts_attributes_anchor"><h3>Contacts Attributes</h3></a>
  
+ > 
+    $megaData = new ContactMegaDataService(MailCommonContract $mjV3);
+
+create a new attribute:
+ > 
+    $megaData->create($data);
+    
+ > Parameters
+
+    $megaData = [
+        'dataType' => $dataType, //(required)
+        'name' => $name,         //(required)
+    ];
+    
+update additional atributes of a contact:
+ > 
+    $megaData->update($megaUpdateData);
+    
+ > Parameters
+
+    $megaUpdateData = [
+        'email' => 'duyanguk1@163.com',  //(required) email or coantact id
+        'data' => [
+            [
+                'Name' => "last_name",  //(required)
+                'Value' => "Doe2"       //(required)
+            ],
+            [
+                'Name' => "country",
+                'Value' => "china"
+            ],
+            ...
+        ]
+    ];
+    
