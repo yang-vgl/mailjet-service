@@ -1,3 +1,10 @@
+<style type='text/css'>
+h1 {"margin-top":0}
+h2 {"margin-top":0}
+h3 {"margin-top":0}
+h4 {"margin-top":0}
+h5 {"margin-top":0}
+</style>
 # Mailjet Email Service
     
 * ### [Installation](#installation_anchor)
