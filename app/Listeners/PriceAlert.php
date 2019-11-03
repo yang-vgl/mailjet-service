@@ -2,17 +2,10 @@
 
 namespace App\Listeners;
 
-use App\Contracts\MailCommonContract;
-use App\Contracts\MailTransactionalContract;
-use App\Events\AccountCreate;
 use App\Events\PriceChange;
-use App\Services\AccountConfirmationService;
-use App\Services\PriceAlertService;
-use App\Services\ResetPasswordService;
+use App\Services\Transactional\PriceAlertService;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
-use App\Events\ForgetPassword;
 
 class PriceAlert implements ShouldQueue
 {

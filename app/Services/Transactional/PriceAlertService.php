@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Transactional;
 
 use App\Contracts\MailTransactionalContract;
-use App\Templates\Welcome;
+use App\Templates\Confirmation;
+use App\Templates\PriceAlert;
+use App\Templates\ResetPassword;
 use App\Utils\Common;
+use Mailjet\Resources;
 
-class WelcomeService
+class PriceAlertService
 {
     protected $mjV31;
 
@@ -22,7 +25,7 @@ class WelcomeService
 
     public function send(array $data)
     {
-        $res = $this->sendWithTemplate(new Welcome($data));
+        $res = $this->sendWithTemplate(new PriceAlert($data));
         return $res;
     }
 

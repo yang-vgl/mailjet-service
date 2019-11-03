@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\AccountCreate;
-use App\Services\AccountConfirmationService;
+use App\Services\Transactional\AccountConfirmationService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
