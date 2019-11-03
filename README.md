@@ -1,8 +1,8 @@
 # Mailjet Email Service
     
 * [Installation](#installation)
-   * [Server Requirements](###server requirements)
-   * [Install&config](####install&config)
+   * [Server Requirements](#server requirements)
+   * [Install&config](#install&config)
 * [Pragmatic REST](#pragmatic-rest)
 * [RESTful URLs](#restful-urls)
 * [HTTP Verbs](#http-verbs)
@@ -15,11 +15,11 @@
 * [JSONP](#jsonp)
 
 # installation
-###server requirements
+#server requirements
   * PHP >= 7.2.0
   * Mysql
   
-###install&config
+#install&config
    >  
     git clone  git@github.com:jaime48/mailjet-service.git
    >   
@@ -39,7 +39,7 @@ Edit .env
     MAILJET_APIKEY=your_mailjet_key
     MAILJET_APISECRET=your_mailjet_secret
     
-4.  Run     
+ Run     
    >           
     php artisan migrate
     php artisan queue:work
