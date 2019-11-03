@@ -1,6 +1,6 @@
 # Mailjet Email Service
     
-* ### [Installation](#installation)
+* ### [Installation](#installation_anchor)
    * #### [Server Requirements](#server_requirements)
    * #### [ Install&config](#install_config)
 * ### [Architecture](#architecture)
@@ -26,7 +26,7 @@
 * ### [Todos](#todos)
 * ### [Bugs](#bugs)
 
-<a name="installation"><h1>installation</h1></a>
+<a name="installation_anchor"><h1>installation</h1></a>
 
 <a name="server_requirements"><h3>Server Requirements </h3></a>
 
