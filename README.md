@@ -21,12 +21,14 @@
         * ##### [Price Alert Email](#price_alert_email)
    * #### [Contacts](#contacts_anchor)
    * #### [Contacts Attributes](#contacts_attributes_anchor)
+* ### [Webhook](#webhook_anchor)
 * ### [Tests](#tests)
-    * [Email Services Test](#email_services_test)
-    * [Contact Services Test](#contact_services_test)
-    * [Contact MegaData Services Test](#contact_mega_services_test)
-* ### [Todos](#todos)
-* ### [Bugs](#bugs)
+   * #### [Email Services Test](#email_services_test)
+   * #### [Contact Services Test](#contact_services_test)
+   * #### [Contact MegaData Services Test](#contact_mega_services_test)
+   * #### [Webhook API Test](#webhook_api_test)
+* ### [Todos](#todos_anchor)
+* ### [Bugs](#bugs_anchor)
 
 <a name="installation_anchor"><h1>installation</h1></a>
 
@@ -69,8 +71,6 @@ Config for Mailjet APIs is located at
 
  >
     /config/services.php
-
-add&edit:
 
 According to Mailjet Documentation two different versions of APIs are required:
 
@@ -300,7 +300,7 @@ All services return same formation of standardized response
  > 
     $contact = new ContactService(MailCommonContract $mjV3);
 
-get:
+get a contact:
  > 
     $contact->get($id);
     
@@ -308,11 +308,11 @@ get:
 
     $id : "duyanguk@163.com"  //email or contact id
           
-getAll:
+get all contacts:
  > 
     $contact->getAll();
     
-create new contact:
+create a new contact:
  > 
     $contact->create($data);
     
@@ -352,7 +352,7 @@ create a new attribute:
         'name' => $name,         //(required)
     ];
     
-update additional atributes of a contact:
+update additional attributes of a contact:
  > 
     $megaData->update($megaUpdateData);
     
@@ -373,3 +373,63 @@ update additional atributes of a contact:
         ]
     ];
     
+<a name="webhook_anchor"><h1>Web Hook</h1></a>   
+
+An API for Mailjet to call back about email events 
+
+ > Address(set up this callback address in Mailjet)
+        
+    https://www.domain.com/api/mailjet/callback    
+ 
+ > Authentication : Base Auth
+    
+     $username = config('services.mailjet.callback.username');
+     $password = config('services.mailjet.callback.password');
+    
+
+  
+   
+      
+<a name="tests"><h1>Tests</h1></a>
+
+Utilizing artisan command for service testing. 
+
+<a name="email_services_test"><h3>Email Services Test</h3></a>
+
+Account Confirm Email
+
+ > 
+    php artisan account:confirm
+
+Welcome Email
+
+ > 
+    php artisan confirm:welcome
+
+Reset Password Email
+
+ > 
+    php artisan reset:password
+
+Price Alert Email
+
+ > 
+    php artisan price:alert
+
+<a name="contact_services_test"><h3>Contact Services Test</h3></a>
+
+ > 
+    php artisan contact
+
+
+<a name="contact_mega_services_test"><h3>Contact MegaData Services Test</h3></a>
+
+ > 
+    php artisan megaData
+
+<a name="webhook_api_test"><h3>Webhook API Test</h3></a>
+
+send post request in postman, set header with base auth
+
+![Alt text](./public/imgs/webhook.jpg?raw=true "Title")
+
