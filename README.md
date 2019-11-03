@@ -28,7 +28,7 @@
    >   
     cd /path/to/project  &  composer install
 
- #####Edit .env
+ <h4>Edit .env</h4>
    >
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -42,7 +42,7 @@
     MAILJET_APIKEY=your_mailjet_key
     MAILJET_APISECRET=your_mailjet_secret
     
- #####Run     
+ <h4>Run</h4>     
    >           
     php artisan migrate
     php artisan queue:work
