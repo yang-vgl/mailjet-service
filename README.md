@@ -1,8 +1,8 @@
 # Mailjet Email Service
     
-* #[Installation](#installation)
-   * ###[Server Requirements](#server_requirements)
-   * ###[Install&config](#install_config)
+* # [Installation](#installation)
+   * ### [Server Requirements](#server_requirements)
+   * ###[ Install&config](#install_config)
 * #[Architecture](#architecture)
    * [Config](#config)
    * [Contracts](#contracts)
