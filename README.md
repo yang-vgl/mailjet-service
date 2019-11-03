@@ -3,15 +3,15 @@
 * ### [Installation](#installation_anchor)
    * #### [Server Requirements](#server_requirements)
    * #### [ Install&config](#install_config)
-* ### [Architecture](#architecture)
-   * #### [Config](#config)
-   * #### [Contracts](#contracts)
-   * #### [Services](#services)
-   * #### [Service Provider](#service_provider)
-   * #### [Templates](#templates)
-   * #### [Events&Listeners](#events_Listeners)
-   * #### [Models](#models)
-   * #### [Commands](#commands)
+* ### [Architecture](#architecture_anchor)
+   * #### [Config](#config_anchor)
+   * #### [Contracts](#contracts_anchor)
+   * #### [Services](#services_anchor)
+   * #### [Service Provider](#service_provider_anchor)
+   * #### [Templates](#templates_anchor)
+   * #### [Events&Listeners](#events_Listeners_anchor)
+   * #### [Models](#models_anchor)
+   * #### [Commands](#commands_anchor)
 * ### [Unified Response](#response)
 * ### [Service Documentation](#service_doc)
    * #### [Transactional Emails](#transactional_emails)
@@ -59,9 +59,9 @@
     php artisan queue:work
     php artisan redis:subscribe(TBD)
 
-<a name="architecture"><h1>Architecture</h1></a>
+<a name="architecture_anchor"><h1>Architecture</h1></a>
 
-<a name="config"><h3>Config</h3></a>
+<a name="config_anchor"><h3>Config</h3></a>
 
 Config for Mailjet APIs is located at
 
@@ -109,12 +109,12 @@ Version 3 : for other common services(e.g. contacts, attributes, webhook).
          ]
      ]
 
-<a name="contracts"><h3>Contracts</h3></a>
+<a name="contracts_anchor"><h3>Contracts</h3></a>
  >
     /app/Contracts/*
 interfaces that define core services for integrating with third-party mail server.
  
-<a name="services"><h3>Services</h3></a>
+<a name="services_anchor"><h3>Services</h3></a>
 
 Basic services that implement contracts interfaces with Mailjet Server.
  >
@@ -130,14 +130,14 @@ Services that manage contacts and attributes
  >
     /app/Services/Contact/*
     
-<a name="service_provider"><h3>Service Provider</h3></a>
+<a name="service_provider_anchor"><h3>Service Provider</h3></a>
 
 Denpendency Injections for Mailjet Server Services
 
   >
     /app/Providers/MailServiceProvider.php
         
-<a name="templates"><h3>Templates</h3></a>
+<a name="templates_anchor"><h3>Templates</h3></a>
 
 Templates classes for transactional emails corresponding to the templates defined in Mailjet 
 
@@ -145,7 +145,7 @@ Templates classes for transactional emails corresponding to the templates define
     /app/Templates/*
 
 
-<a name="events_Listeners"><h3>Events&Listeners</h3></a>
+<a name="events_Listeners_anchor"><h3>Events&Listeners</h3></a>
 
 Events&Listeners triggering transactional emails integrating with templates
 
@@ -153,14 +153,14 @@ Events&Listeners triggering transactional emails integrating with templates
     /app/Events/*
     /app/Listeners/*
     
-<a name="models"><h3>Models</h3></a>
+<a name="models_anchor"><h3>Models</h3></a>
 
 Contains models for Mailjet Components, e.g. contacts, contacts attributes.
 
  >
     /app/Models/*
 
-<a name="commands"><h3>Commands</h3></a>
+<a name="commands_anchor"><h3>Commands</h3></a>
 
 executable scripts for testing and Redis pub/sub 
 
