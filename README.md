@@ -1,8 +1,8 @@
 # Mailjet Email Service
-
+    
 * [Installation](#installation)
-   * [Server Requirements](#server requirements)
-   * [Install&config](#install&config)
+   * [Server Requirements](###server requirements)
+   * [Install&config](####install&config)
 * [Pragmatic REST](#pragmatic-rest)
 * [RESTful URLs](#restful-urls)
 * [HTTP Verbs](#http-verbs)
