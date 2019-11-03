@@ -12,7 +12,7 @@ class Contact
     public static function validateUpdate($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|integer',
+            'email' => 'required',
             'IsExcludedFromCampaigns'=> 'filled|boolean',
             'name'=> 'filled|string'
         ]);

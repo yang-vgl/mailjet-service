@@ -26,7 +26,7 @@ class ContactService
         }
         $res = $this->mjV3->post(Resources::$Contact, ['body' => [
             'Email' =>  $data['email'],
-            'Name'  =>  isset($data['email']) ? $data['email'] : '',
+            'Name'  =>  isset($data['name']) ? $data['name'] : '',
             'IsExcludedFromCampaigns' => isset($data['IsExcludedFromCampaigns']) ? $data['IsExcludedFromCampaigns'] : true
         ]]);
         return $this->formatResponse($res);
@@ -51,7 +51,7 @@ class ContactService
         if(!$res['status']){
             return $this->response(false, $res['msg']);
         }
-        $res = $this->mjV3->put(Resources::$Contact, ['id' => $data['id'], 'body' => $res[1]]);
+        $res = $this->mjV3->put(Resources::$Contact, ['id' => $data['email'], 'body' => $res['data']]);
         return $this->formatResponse($res);
     }
 

@@ -30,7 +30,7 @@ class ContactMetaData
         if ($validator->fails()) {
             return ['status' => false, 'msg' => $validator->errors()->getMessages()];
         }
-        return [true];
+        return ['status' => true];
     }
 
     public static function validateUpdate($data)

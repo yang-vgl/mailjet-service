@@ -44,7 +44,6 @@ class MailTestController extends Controller
     }
 
     public function testSend(Request $request)
-
     {
         print_r($request->all());exit;
 //        $data = [
@@ -199,7 +198,6 @@ class MailTestController extends Controller
 
     public function testContact()
     {
-
         $data = [
             'id' => 1970065886,
             'IsExcludedFromCampaigns' => 1,
@@ -218,9 +216,71 @@ class MailTestController extends Controller
                 ]
             ]
         ];
+        $contact = new ContactService($this->mjV3);
+        //print_r($contact);exit;
+        $res = $contact->get('titus@cruisewatch.com');
+        print_r($res);exit;
+    }
+
+    public function testContactCreate()
+    {
+        $data = [
+            'email' => 'duyanguk1@163.com',
+            'IsExcludedFromCampaigns' => 1,
+            'Name' => "Yang Du"
+        ];
+        $contact = new ContactService($this->mjV3);
+        //print_r($contact);exit;
+        $res = $contact->create($data);
+        print_r($res);exit;
+    }
+
+    public function testContactUpdate()
+    {
+        $data = [
+            'email' => 'duyanguk1@163.com',
+            'IsExcludedFromCampaigns' => 0,
+            'Name' => "Yang Du 2"
+        ];
+        $contact = new ContactService($this->mjV3);
+        //print_r($contact);exit;
+        $res = $contact->update($data);
+        print_r($res);exit;
+    }
+
+    public function testMega()
+    {
+
+        $contact = new ContactMegaDataService($this->mjV3);
+        //print_r($contact);exit;
+        $res = $contact->create($megaData);
+        print_r($res);exit;
+    }
+
+    public function testMegaUpdate()
+    {
+        $megaUpdateData = [
+            'email' => 'duyanguk1@163.com',
+            'data' => [
+                [
+                    'Name' => "last_name",
+                    'Value' => "Doe2"
+                ],
+                [
+                    'Name' => "country",
+                    'Value' => "china"
+                ],
+                [
+                'Name' => "post_code",
+                'Value' => "200000"
+            ]
+            ]
+        ];
         $contact = new ContactMegaDataService($this->mjV3);
         //print_r($contact);exit;
         $res = $contact->update($megaUpdateData);
         print_r($res);exit;
     }
+
+
 }
