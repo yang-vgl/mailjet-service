@@ -440,6 +440,8 @@ send post request in postman, set header with base auth
 
 <a name="bugs_anchor"><h1>Bugs</h1></a>
 
-| Description                       | Reason            | Fix Method       | Level         | 
-| --------------------------------- | --------------- | --------- | ----------- | ------ |
-| can't send email to original price alert template, maijet shows email blocked     | Unknown   | Copy template      | Normal | 
+| Description        | Reason   |  Fix Method     | Level   |
+| --------   | -----:  | :----:  | :----:  |
+| can't send email to original price alert template, maijet shows email blocked     | Unknown   |  Copy template     |  Minor    |
+
+
