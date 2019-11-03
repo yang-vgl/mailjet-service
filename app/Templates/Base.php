@@ -40,7 +40,6 @@ class Base
             $this->subject = $data['subject'];
         }
         $this->recipients = $data['recipients'];
-
     }
 
     public function getError() {

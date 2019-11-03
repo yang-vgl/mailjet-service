@@ -40,9 +40,9 @@ class MailjetV3Service implements MailCommonContract
         try{
             $response = $this->client->post($resource, $args, $options);
         }catch(\Exception $e){
-            return [false, $e->getMessage()];
+            return ['status' => false, 'msg' => $e->getMessage(), 'data' => ''];
         }
-        return [true, $response];
+        return ['status' => true, 'msg' => '' , 'data' => $response];
     }
 
     public function get($resource, array $args = [], array $options = [])
@@ -50,9 +50,9 @@ class MailjetV3Service implements MailCommonContract
         try{
             $response = $this->client->get($resource, $args, $options);
         }catch(\Exception $e){
-            return [false, $e->getMessage()];
+            return ['status' => false, 'msg' => $e->getMessage()];
         }
-        return [true, $response];
+        return ['status' => true, 'data' => $response];
     }
 
     public function put($resource, array $args = [], array $options = [])
@@ -60,9 +60,9 @@ class MailjetV3Service implements MailCommonContract
         try{
             $response = $this->client->put($resource, $args, $options);
         }catch(\Exception $e){
-            return [false, $e->getMessage()];
+            return ['status' => false, 'msg' => $e->getMessage()];
         }
-        return [true, $response];
+        return ['status' => true, 'data' => $response];
     }
 
 

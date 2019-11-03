@@ -9,17 +9,6 @@ use Illuminate\Support\Facades\Validator;
 class Contact
 {
 
-//    public static function validateGet($id)
-//    {
-//        $validator = Validator::make([$id], [
-//            'id' => 'required|integer',
-//        ]);
-//        if ($validator->fails()) {
-//            return [false,  $validator->errors()->getMessages()];
-//        }
-//        return ['status' => true];
-//    }
-
     public static function validateUpdate($data)
     {
         $validator = Validator::make($data, [
@@ -28,10 +17,10 @@ class Contact
             'name'=> 'filled|string'
         ]);
         if ($validator->fails()) {
-            return [false,  $validator->errors()->getMessages()];
+            return ['status' => false,  'msg' => $validator->errors()->getMessages()];
         }
         unset($data['id']);
-        return [true, $data];
+        return ['status' => true, 'data' => $data];
     }
 
     public static function validateCreate($data)
@@ -42,9 +31,9 @@ class Contact
             'isExcludedFromCampaigns' => 'filled|boolean',
         ]);
         if ($validator->fails()) {
-            return [false,  $validator->errors()->getMessages()];
+            return ['status' => false,  'msg' => $validator->errors()->getMessages()];
         }
-        return [true, ''];
+        return ['status' => true, 'data' => $data];
     }
 
 }

@@ -49,9 +49,9 @@ class MailjetV31Service implements MailTransactionalContract
         try{
             $response = $this->client->post($resource, $args, $options);
         }catch(\Exception $e){
-            return [false, $e->getMessage()];
+            return ['status' => false, 'msg' => $e->getMessage()];
         }
-        return [true, $response];
+        return ['status' => true, 'data' => $response];
     }
 
     /**
@@ -68,9 +68,9 @@ class MailjetV31Service implements MailTransactionalContract
         try{
             $response = $this->client->get($resource, $args, $options);
         }catch(\Exception $e){
-            return [false, $e->getMessage()];
+            return ['status' => false, 'msg' => $e->getMessage()];
         }
-        return [true, $response];
+        return ['status' => true, 'data' => $response];
     }
 
     /**
@@ -87,9 +87,9 @@ class MailjetV31Service implements MailTransactionalContract
         try{
             $response = $this->client->put($resource, $args, $options);
         }catch(\Exception $e){
-            return [false, $e->getMessage()];
+            return ['status' => false, 'msg' => $e->getMessage()];
         }
-        return [true, $response];
+        return ['status' => true, 'data' => $response];
 
     }
 
@@ -107,9 +107,9 @@ class MailjetV31Service implements MailTransactionalContract
         try{
             $response = $this->client->delete($resource, $args, $options);
         }catch(\Exception $e){
-            return [false, $e->getMessage()];
+            return ['status' => false, 'msg' => $e->getMessage()];
         }
-        return [true, $response];
+        return ['status' => true, 'data' => $response];
     }
 
 

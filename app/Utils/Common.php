@@ -14,22 +14,18 @@ trait Common
         $body = $template->getBody();
         //print_r($body);exit;
         $response =  $this->mjV31->post(Resources::$Email, ['body' => $body]);
-        if($response[0]){
-            if($response[1]->success()){
-                return $this->response(true, '', $response[1]->getData());
+        if($response['status']){
+            if($response['data']->success()){
+                return $this->response(true, '', $response['data']->getData());
             }else{
-                return $this->response(false, $response[1]->getBody());
+                return $this->response(false, $response['data']->getBody());
             }
         }else{
-            return $this->response(false, $response[1]);
+            return $this->response(false, $response['msg']);
         }
     }
 
-    public function sendCommon($body)
-    {
-        $response =  $this->mjV3->post(Resources::$Email, ['body' => $body]);
 
-    }
 
     public static function response($status, $msg='', $data='')
     {
@@ -38,6 +34,18 @@ trait Common
             'msg' => $msg,
             'data' => $data
         ]);
+    }
+
+    public function formatResponse($res)
+    {
+        if(!$res['status']){
+            return $this->response(false, $res['msg']);
+        }
+        if($res['data']->success()){
+            return $this->response(true, '', $res['data']->getData());
+        }else{
+            return $this->response(false, $res['data']->getBody());
+        }
     }
 
 }

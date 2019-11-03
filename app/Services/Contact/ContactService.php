@@ -21,46 +21,38 @@ class ContactService
     public function create($data)
     {
         $res = Contact::validateCreate($data);
-        if(!$res[0]){
-            return self::response(false, $res[1]);
+        if(!$res['status']){
+            return $this->response(false, $res['msg']);
         }
         $res = $this->mjV3->post(Resources::$Contact, ['body' => [
             'Email' =>  $data['email'],
             'Name'  =>  isset($data['email']) ? $data['email'] : '',
             'IsExcludedFromCampaigns' => isset($data['IsExcludedFromCampaigns']) ? $data['IsExcludedFromCampaigns'] : true
         ]]);
-        return $this->response($res[0], $res[1]);
+        return $this->formatResponse($res);
     }
 
     public function getAll()
     {
         $res = $this->mjV3->get(Resources::$Contact);
-        if(!$res[0]){
-            return $this->response(false, $res[1]);
-        }
-        return $this->response($res[0], '', $res[1]->getData());
+        return $this->formatResponse($res);
+
     }
 
     public function get($id)
     {
         $res = $this->mjV3->get(Resources::$Contact, ['id' => $id]);
-        if(!$res[0]){
-            return $this->response(false, $res[1]);
-        }
-        return $this->response($res[0], '', $res[1]->getData());
+        return $this->formatResponse($res);
     }
 
     public function update($data)
     {
         $res = Contact::validateUpdate($data);
-        if(!$res[0]){
-            return $this->response(false, $res[1]);
+        if(!$res['status']){
+            return $this->response(false, $res['msg']);
         }
         $res = $this->mjV3->put(Resources::$Contact, ['id' => $data['id'], 'body' => $res[1]]);
-        if(!$res[0]){
-            return $this->response(false, $res[1]);
-        }
-        return $this->response($res[0], '', $res[1]->getData());
+        return $this->formatResponse($res);
     }
 
 

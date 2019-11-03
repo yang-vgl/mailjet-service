@@ -34,8 +34,6 @@ class Welcome extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -44,18 +42,12 @@ class Welcome extends Command
         $fromEmail = $this->ask("Enter From Email(optional):", config('services.mailjet.From.Email'));
         $fromName = $this->ask("Enter From Name(optional):", config('services.mailjet.From.Name'));
         $toEmail = $this->ask('enter recipient\'s email(required):');
-        $toName = $this->ask('Enter recipient\'s Name(optional):', 'Cruiser');
-        $recipients[] = [
+        $toName = $this->ask('Enter recipient\'s Name(optional):');
+        $recipients = [
             'email' => $toEmail,
-            'name' => $toName
         ];
-        while($this->confirm('Do you wish to add another recipient ?')) {
-            $toEmail = $this->ask('enter recipient\'s email(required):');
-            $toName = $this->ask('Enter recipient\'s Name(optional):', 'Cruiser');
-            $recipients[] = [
-                'email' => $toEmail,
-                'name' => $toName
-            ];
+        if($toName){
+            $recipients['name'] =  $toName;
         }
         $data = [
             'recipients' => $recipients,
@@ -63,6 +55,6 @@ class Welcome extends Command
             'fromName' => $fromName,
             'subject' => $subject,
         ];
-        event(new AccountConfirmEvent($data));exit;
+        event(new AccountConfirmEvent($data));
     }
 }

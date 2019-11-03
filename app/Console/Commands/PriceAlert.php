@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Events\AccountCreate;
-use App\Events\ForgetPassword;
 use App\Events\PriceChange;
 use Illuminate\Console\Command;
 
@@ -26,7 +24,6 @@ class PriceAlert extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -35,8 +32,6 @@ class PriceAlert extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -87,6 +82,6 @@ class PriceAlert extends Command
                 ],
             ]
         ];
-        event(new PriceChange($data));exit;
+        event(new PriceChange($data));
     }
 }

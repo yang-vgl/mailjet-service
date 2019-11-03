@@ -21,8 +21,8 @@ class Welcome extends Base
     public function validate(array $data)
     {
         $validator = Validator::make($data, [
-            'recipients.*.email' => 'required|email',
-            'recipients.*.name' => 'filled|string',
+            'recipients.email' => 'required|email',
+            'recipients.name' => 'filled|string',
         ]);
         if ($validator->fails()) {
             $this->error = $validator->errors()->getMessages();
@@ -32,8 +32,7 @@ class Welcome extends Base
     }
 
     public function getBody() {
-        foreach($this->recipients as $recipient){
-            $recipientName = isset($recipient['name']) ? $recipient['name'] : $this->firstName;
+        $toName = isset($this->recipients['name']) ? $this->recipients['name'] : $this->firstName;
             $message[] = [
                 'From' => [
                     'Email' => $this->fromEmail,
@@ -41,18 +40,17 @@ class Welcome extends Base
                 ],
                 'To' => [
                     [
-                        'Email' => $recipient['email'],
-                        'Name' => $recipientName
+                        'Email' => $this->recipients['email'],
+                        'Name' => $toName
                     ]
                 ],
                 'TemplateID' => self::$template_id,
                 'TemplateLanguage' => true,
                 'Subject' => $this->subject,
                 'Variables' => [
-                    'firstname' => $recipientName
+                    'firstname' => $toName
                 ]
             ];
-        }
         $body = [
             'Messages' => $message
         ];

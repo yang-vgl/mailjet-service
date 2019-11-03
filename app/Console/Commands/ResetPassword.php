@@ -55,6 +55,6 @@ class ResetPassword extends Command
             'link' => $link,
             'subject' => $subject,
         ];
-        event(new ForgetPassword($data));exit;
+        event(new ForgetPassword($data));
     }
 }

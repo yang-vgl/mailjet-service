@@ -41,7 +41,7 @@ class ResetPassword extends Base
     {
         $this->variables = [
             "code" =>  $data['code'],
-            "link" =>  $data['link']
+            "link" =>  $data['link'],
         ];
     }
 

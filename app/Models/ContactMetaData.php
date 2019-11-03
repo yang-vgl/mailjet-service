@@ -28,7 +28,7 @@ class ContactMetaData
             ]
         ]);
         if ($validator->fails()) {
-            return [false, $validator->errors()->getMessages()];
+            return ['status' => false, 'msg' => $validator->errors()->getMessages()];
         }
         return [true];
     }
@@ -41,9 +41,9 @@ class ContactMetaData
             'data.*.Value' => 'required',
         ]);
         if ($validator->fails()) {
-            return [false, $validator->errors()->getMessages()];
+            return ['status' => false, 'msg' => $validator->errors()->getMessages()];
         }
-        return [true];
+        return ['status' => true];
     }
 
 }

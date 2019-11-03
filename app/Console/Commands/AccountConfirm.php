@@ -54,6 +54,6 @@ class AccountConfirm extends Command
             'link' => $link,
             'subject' => $subject,
         ];
-        event(new AccountCreate($data));exit;
+        event(new AccountCreate($data));
     }
 }
