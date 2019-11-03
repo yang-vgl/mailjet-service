@@ -1,9 +1,9 @@
 # Mailjet Email Service
     
-* ## [Installation](#installation)
-   * ### [Server Requirements](#server_requirements)
-   * ###[ Install&config](#install_config)
-* #[Architecture](#architecture)
+* ### [Installation](#installation)
+   * #### [Server Requirements](#server_requirements)
+   * #### [ Install&config](#install_config)
+* ### [Architecture](#architecture)
    * [Config](#config)
    * [Contracts](#contracts)
    * [Services](#services)
@@ -12,10 +12,10 @@
    * [Events&Listeners](#events_Listeners)
    * [Models](#models)
    * [Commands](#commands)
-* ## [Unified Response](#response)
-* ###### [Service Documentation](#service_doc)
+* ### [Unified Response](#response)
+* ### [Service Documentation](#service_doc)
    * [Transactional Emails](#transactional_emails)
-        * [Account Confirm Email](#confirm_email)
+        * ##### [Account Confirm Email](#confirm_email)
         * [Welcome Email](#welcome_email)
         * [Reset Password Email](#reset_password_email)
         * [Price Alert Email](#price_alert_email)
@@ -26,12 +26,12 @@
    * [Events&Listeners](#events_Listeners)
    * [Models](#models)
    * [Commands](#commands)
-* ###### [Tests](#tests)
+* ### [Tests](#tests)
     * [Email Services Test](#email_services_test)
     * [Contact Services Test](#contact_services_test)
     * [Contact MegaData Services Test](#contact_mega_services_test)
-* ###### [Todos](#todos)
-* ###### [Bugs](#bugs)
+* ### [Todos](#todos)
+* ### [Bugs](#bugs)
 
 <a name="installation"><h1>installation</h1></a>
 
