@@ -442,6 +442,7 @@ send post request in postman, set header with base auth
 
 | Description        | Reason   |  Fix Method     | Level   |
 | --------   | -----:  | :----:  | :----:  |
-| can't send email to original price alert template, maijet shows email blocked     | Unknown   |  Copy template     |  Minor    |
+| can't send email to original price alert template,
+ maijet shows email blocked     | Unknown   |  Copy template     |  Minor    |
 
 
