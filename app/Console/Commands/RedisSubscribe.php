@@ -12,14 +12,14 @@ class RedisSubscribe extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'redis:subscribe';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Subscribe to a Redis channel';
 
     /**
      * Create a new command instance.
