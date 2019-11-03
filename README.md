@@ -2,7 +2,7 @@
     
 * [Installation](#installation)
    * [Server Requirements](#server_requirements)
-   * [Install&config](#install&config)
+   * [Install&config](#install_config)
 * [Pragmatic REST](#pragmatic-rest)
 * [RESTful URLs](#restful-urls)
 * [HTTP Verbs](#http-verbs)
@@ -15,20 +15,20 @@
 * [JSONP](#jsonp)
 
 
-<a name="installation">installation</a>
+<a name="installation"><h1>installation</h1></a>
 
-Server Requirements 
-#server_requirements
+<a name="server_requirements"><h4>Server Requirements </h4></a>
+
   * PHP >= 7.2.0
   * Mysql
-  
-#install&config
+ 
+ <a name="install_config"><h4>install&config</h4></a> 
    >  
     git clone  git@github.com:jaime48/mailjet-service.git
    >   
     cd /path/to/project  &  composer install
 
-Edit .env
+ Edit .env
    >
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
