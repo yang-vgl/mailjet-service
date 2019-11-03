@@ -22,7 +22,7 @@
    * #### [Contacts](#contacts_anchor)
    * #### [Contacts Attributes](#contacts_attributes_anchor)
 * ### [Webhook](#webhook_anchor)
-* ### [Tests](#tests)
+* ### [Tests](#tests_anchor)
    * #### [Email Services Test](#email_services_test)
    * #### [Contact Services Test](#contact_services_test)
    * #### [Contact MegaData Services Test](#contact_mega_services_test)
@@ -379,18 +379,14 @@ An API for Mailjet to call back about email events
 
  > Address(set up this callback address in Mailjet)
         
-    https://www.domain.com/api/mailjet/callback    
+    https://username:password@www.domain.com/api/mailjet/callback    
  
  > Authentication : Base Auth
     
      $username = config('services.mailjet.callback.username');
      $password = config('services.mailjet.callback.password');
     
-
-  
-   
-      
-<a name="tests"><h1>Tests</h1></a>
+<a name="tests_anchor"><h1>Tests</h1></a>
 
 Utilizing artisan command for service testing. 
 
@@ -433,3 +429,17 @@ send post request in postman, set header with base auth
 
 ![Alt text](./public/imgs/webhook.jpg?raw=true "Title")
 
+
+<a name="todos_anchor"><h1>Todos</h1></a>
+
+1. Handle webhook callback data
+
+2. A local logging system for every action
+
+3. Redis pub/sub connection  
+
+<a name="bugs_anchor"><h1>Bugs</h1></a>
+
+| Description                       | Reason            | Fix Method       | Level         | 
+| --------------------------------- | --------------- | --------- | ----------- | ------ |
+| can't send email to original price alert template, maijet shows email blocked     | Unknown   | Copy template      | Normal | 
