@@ -1,6 +1,6 @@
 # Mailjet Email Service
     
-* # [Installation](#installation)
+* ## [Installation](#installation)
    * ### [Server Requirements](#server_requirements)
    * ###[ Install&config](#install_config)
 * #[Architecture](#architecture)
@@ -12,7 +12,7 @@
    * [Events&Listeners](#events_Listeners)
    * [Models](#models)
    * [Commands](#commands)
-* ###### [Unified Response](#response)
+* ## [Unified Response](#response)
 * ###### [Service Documentation](#service_doc)
    * [Transactional Emails](#transactional_emails)
         * [Account Confirm Email](#confirm_email)
