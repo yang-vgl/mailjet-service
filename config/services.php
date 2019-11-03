@@ -59,7 +59,6 @@ return [
             'username' => 'username',
             'password' => 'password'
         ]
-
     ]
 
 ];

@@ -12,7 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use \App\Events\AccountConfirm as AccountConfirmEvent;
 
-class Welcome
+class Welcome implements ShouldQueue
 {
     protected $service;
 
@@ -34,6 +34,6 @@ class Welcome
     {
         Log::info("email sent through event-listener");
         $res = $this->service->send($event->data);
-        print_r($res);exit;
+        print_r($res);
     }
 }

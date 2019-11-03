@@ -14,7 +14,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use App\Events\ForgetPassword;
 
-class PriceAlert
+class PriceAlert implements ShouldQueue
 {
     protected $service;
 
@@ -37,6 +37,6 @@ class PriceAlert
     {
         Log::info("price alert email sent through event-listener");
         $res = $this->service->send($event->data);
-        print_r($res);exit;
+        print_r($res);
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
-class AccountConfirm
+class AccountConfirm implements ShouldQueue
 {
     protected $service;
 
@@ -32,6 +32,6 @@ class AccountConfirm
     {
         Log::info("email sent through event-listener");
         $res = $this->service->send($event->data);
-        print_r($res);exit;
+        print_r($res);
     }
 }

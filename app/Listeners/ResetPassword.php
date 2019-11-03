@@ -12,7 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use App\Events\ForgetPassword;
 
-class ResetPassword
+class ResetPassword implements ShouldQueue
 {
     protected $service;
 
@@ -35,6 +35,6 @@ class ResetPassword
     {
         Log::info("reset password email sent through event-listener");
         $res = $this->service->send($event->data);
-        print_r($res);exit;
+        print_r($res);
     }
 }
