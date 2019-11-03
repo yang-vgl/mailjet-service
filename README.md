@@ -17,18 +17,18 @@
 
 <a name="installation"><h1>installation</h1></a>
 
-<a name="server_requirements"><h4>Server Requirements </h4></a>
+<a name="server_requirements"><h3>Server Requirements </h3></a>
 
   * PHP >= 7.2.0
   * Mysql
  
- <a name="install_config"><h4>install&config</h4></a> 
+ <a name="install_config"><h3>install&config</h3></a> 
    >  
     git clone  git@github.com:jaime48/mailjet-service.git
    >   
     cd /path/to/project  &  composer install
 
- Edit .env
+ #####Edit .env
    >
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -42,7 +42,7 @@
     MAILJET_APIKEY=your_mailjet_key
     MAILJET_APISECRET=your_mailjet_secret
     
- Run     
+ #####Run     
    >           
     php artisan migrate
     php artisan queue:work
