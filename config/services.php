@@ -53,7 +53,7 @@ return [
         ],
         'From' => [
             'Email' => "info@cruisewatch.com",
-            'Name' => "Cruise Watch"
+            'Name' => "Cruise Team"
         ],
         'callback' => [
             'username' => 'username',

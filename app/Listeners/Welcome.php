@@ -17,7 +17,6 @@ class Welcome
     protected $service;
 
     /**
-     * Create the event listener.
      * @param WelcomeService $service
      */
     public function __construct(WelcomeService $service)

@@ -18,7 +18,7 @@ class Base
 
     protected $error = [];
 
-    protected $firstName = 'cruiser';
+    protected $firstName = 'Cruiser';
 
     public function baseInit($data)
     {

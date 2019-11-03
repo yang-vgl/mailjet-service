@@ -17,7 +17,6 @@ class AccountConfirm
     /**
      * Create the event listener.
      * @param AccountConfirmationService $service
-     * @param MailTransactionalContract $mjV31
      */
     public function __construct(AccountConfirmationService $service)
     {

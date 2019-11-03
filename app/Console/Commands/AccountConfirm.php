@@ -42,7 +42,7 @@ class AccountConfirm extends Command
         $fromEmail = $this->ask("Enter From Email():", config('services.mailjet.From.Email'));
         $fromName = $this->ask("Enter From Name():", config('services.mailjet.From.Name'));
         $toEmail = $this->ask('enter recipient\'s email(required):');
-        $toName = $this->ask('Enter recipient\'s Name(optional):');
+        $toName = $this->ask('Enter recipient\'s Name():', 'Cruiser');
         $link = $this->ask('Enter Confirm Link(required):');
         $data = [
             'recipients' =>[

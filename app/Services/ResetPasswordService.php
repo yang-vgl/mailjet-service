@@ -15,7 +15,6 @@ class ResetPasswordService
     use Common;
 
     /**
-     * Create the event listener.
      * @param MailTransactionalContract $mjV31
      */
     public function __construct( MailTransactionalContract $mjV31)

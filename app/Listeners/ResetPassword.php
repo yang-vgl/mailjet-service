@@ -34,7 +34,6 @@ class ResetPassword
     public function handle(ForgetPassword $event)
     {
         Log::info("reset password email sent through event-listener");
-        //$this->trans->testSend($this->mjV31);
         $res = $this->service->send($event->data);
         print_r($res);exit;
     }

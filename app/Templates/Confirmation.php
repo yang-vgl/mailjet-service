@@ -38,7 +38,7 @@ class Confirmation extends Base
     {
         $this->link = $data['link'];
         $this->variables = [
-            "firstname" =>  isset($this->recipients[0]['name']) ? $this->recipients[0]['name'] : $this->firstName,
+            "firstname" =>  isset($this->recipients['name']) ? $this->recipients['name'] : $this->firstName,
             "link" =>  $this->link
         ];
     }
