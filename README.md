@@ -1,7 +1,7 @@
 # Mailjet Email Service
     
 * [Installation](#installation)
-   * [Server Requirements](#server requirements)
+   * [Server Requirements](#server_requirements)
    * [Install&config](#install&config)
 * [Pragmatic REST](#pragmatic-rest)
 * [RESTful URLs](#restful-urls)
@@ -14,8 +14,11 @@
 * [Mock Responses](#mock-responses)
 * [JSONP](#jsonp)
 
-# installation
-#server requirements
+
+<a name="installation">installation</a>
+
+Server Requirements 
+#server_requirements
   * PHP >= 7.2.0
   * Mysql
   
