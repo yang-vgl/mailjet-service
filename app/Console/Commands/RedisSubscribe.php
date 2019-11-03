@@ -38,7 +38,7 @@ class RedisSubscribe extends Command
      */
     public function handle()
     {
-        Redis::subscribe(['test-channel'], function ($message) {
+        Redis::subscribe(['mailjet-channel'], function ($message) {
            //todo map to different email event
         });
     }
