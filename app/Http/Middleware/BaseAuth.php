@@ -10,16 +10,16 @@ class BaseAuth
 {
     /**
      * Handle an incoming request.
-     *
+     * Base HTTP Authentication for Mailjet Webhook
      * @param  Request  $request
      * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
+        //https://username:password@www.mailjet.loc/api/mailjet/callback
         $userAuth = $request->getUser();
         $passwordAuth = $request->getPassword();
-        //https://username:password@www.mailjet.loc/api/mailjet/callback
         if (!$userAuth || !$passwordAuth) {
             return response('Unauthorized', 401);
         } else {
