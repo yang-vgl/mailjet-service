@@ -491,7 +491,6 @@ Price Alert Email
  > 
     php artisan contact
 
-s
 <a name="contact_mega_services_test"><h3>Contact MegaData Services Test</h3></a>
 
  > 
