@@ -27,6 +27,7 @@
    * #### [Email Services Test](#email_services_test)
    * #### [Contact Services Test](#contact_services_test)
    * #### [Contact MegaData Services Test](#contact_mega_services_test)
+   * #### [Contact List Services Test](#contact_list_services_test)
    * #### [Webhook API Test](#webhook_api_test)
 * ### [Todos](#todos_anchor)
 * ### [Bugs](#bugs_anchor)
@@ -495,6 +496,11 @@ Price Alert Email
 
  > 
     php artisan megaData
+
+<a name="contact_list_services_test"><h3>Contact List Services Test</h3></a>
+
+ > 
+    php artisan contact:list
 
 <a name="webhook_api_test"><h3>Webhook API Test</h3></a>
 
