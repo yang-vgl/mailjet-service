@@ -27,5 +27,4 @@ Route::get('/test/contact/create', 'MailTestController@testContactCreate');
 Route::get('/test/contact/update', 'MailTestController@testContactUpdate');
 Route::get('/test/contact/mega', 'MailTestController@testMega');
 Route::get('/test/contact/mega/update', 'MailTestController@testMegaUpdate');
-
-//Route::post('/api/mailjet/callback', 'MailjetCallbackController@callBack');
+Route::get('/test/contact/list/create', 'MailTestController@testContactList');

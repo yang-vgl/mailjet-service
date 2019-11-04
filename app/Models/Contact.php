@@ -13,14 +13,25 @@ class Contact
     {
         $validator = Validator::make($data, [
             'email' => 'required',
-            'IsExcludedFromCampaigns'=> 'filled|boolean',
+            'isExcludedFromCampaigns'=> 'filled|boolean',
             'name'=> 'filled|string'
         ]);
         if ($validator->fails()) {
             return ['status' => false,  'msg' => $validator->errors()->getMessages()];
         }
-        unset($data['id']);
-        return ['status' => true, 'data' => $data];
+        $body = [];
+        if(isset($data['isExcludedFromCampaigns'])){
+            $body = [
+                'IsExcludedFromCampaigns' => $data['isExcludedFromCampaigns']
+            ];
+        }
+        if(isset($data['name'])){
+            $body = [
+                'Name' => $data['name']
+            ];
+        }
+
+        return ['status' => true, 'data' => $body];
     }
 
     public static function validateCreate($data)

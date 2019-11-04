@@ -7,11 +7,12 @@ use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionalContract;
 use App\Events\AccountCreate;
 use App\Events\PriceChange;
-use App\Services\AccountConfirmationService;
+use App\Services\Transactional\AccountConfirmationService;
 use App\Services\Base\MailjetV3Service;
+use App\Services\Contact\ContactListService;
 use App\Services\Contact\ContactMegaDataService;
 use App\Services\Contact\ContactService;
-use App\Services\ResetPasswordService;
+use App\Services\Transactional\ResetPasswordService;
 use App\Templates\Confirmation;
 use App\Utils\Common;
 use Illuminate\Http\Request;
@@ -280,6 +281,37 @@ class MailTestController extends Controller
         //print_r($contact);exit;
         $res = $contact->update($megaUpdateData);
         print_r($res);exit;
+    }
+
+    public function testContactList()
+    {
+        $body = [
+            'contacts' => [
+                "duyanguk@163.com",
+                "duyang48484848@gmail.com"
+            ],
+            'contactLists' => [
+                [
+                    'action' => "addforce",
+                    'listId' => "10125920"
+                ],
+                [
+                    'action' => "addnoforce",
+                    'listId' => "10125919"
+                ],
+                [
+                    'action' => "remove",
+                    'listId' => "2083567"
+                ],
+                [
+                    'action' => "unsub",
+                    'listId' => "2095160"
+                ]
+            ]
+        ];
+        $data = ['id' => 10125919, 'name' => 'contact list test 3'];
+        $contactList = new ContactListService($this->mjV3);
+        print_r($contactList->contactsManagement($body));
     }
 
 

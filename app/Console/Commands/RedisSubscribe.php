@@ -40,7 +40,7 @@ class RedisSubscribe extends Command
     {
         ini_set('default_socket_timeout', -1);
         Redis::subscribe(['mailjet-channel'], function ($message) {
-           //todo map to different email event
+           //todo map to different event
         });
     }
 }

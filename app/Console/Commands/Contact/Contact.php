@@ -54,22 +54,22 @@ class Contact extends Command
                 break;
             case 'create':
                 $email = $this->ask('Enter email:');
-                $IsExcludedFromCampaigns = $this->choice('value?', [0, 1]);
+                $isExcludedFromCampaigns = $this->choice('value?', [0, 1]);
                 $Name = $this->ask('Enter name:');
                 $data = [
                     'email' => $email,
-                    'IsExcludedFromCampaigns' => $IsExcludedFromCampaigns,
-                    'Name' => $Name
+                    'isExcludedFromCampaigns' => $isExcludedFromCampaigns,
+                    'name' => $Name
                 ];
                 print_r($contact->create($data));
                 break;
             case 'update':
                 $email = $this->ask('Enter email:');
-                $IsExcludedFromCampaigns = $this->choice('value?', [0, 1]);
+                $isExcludedFromCampaigns = $this->choice('value?', [0, 1]);
                 $Name = $this->ask('Enter name:');
                 $data = [
                     'email' => $email,
-                    'IsExcludedFromCampaigns' => $IsExcludedFromCampaigns,
+                    'isExcludedFromCampaigns' => $isExcludedFromCampaigns,
                     'Name' => $Name
                 ];
                 print_r($contact->update($data));

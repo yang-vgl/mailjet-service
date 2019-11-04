@@ -27,7 +27,7 @@ class ContactService
         $res = $this->mjV3->post(Resources::$Contact, ['body' => [
             'Email' =>  $data['email'],
             'Name'  =>  isset($data['name']) ? $data['name'] : '',
-            'IsExcludedFromCampaigns' => isset($data['IsExcludedFromCampaigns']) ? $data['IsExcludedFromCampaigns'] : true
+            'IsExcludedFromCampaigns' => isset($data['isExcludedFromCampaigns']) ? $data['isExcludedFromCampaigns'] : true
         ]]);
         return $this->formatResponse($res);
     }
