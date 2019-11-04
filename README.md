@@ -177,10 +177,10 @@ All services return same formation of standardized response
  >
     {
       "status": true, 
-      "msg": "", // error message if status is false
+      "msg": "",          // error message if status is false
       "data": {
             ...
-          }  // response data if any
+          }               // response data if any
     }
 
 <a name="service_doc"><h1>Service Documentation</h1></a>
@@ -197,13 +197,13 @@ All services return same formation of standardized response
    
     $data = [
         'recipients' =>[
-            'email' => $toEmail, //(required) recipient's email
-                'name' => $toName  // (optional) recipient's name
+            'email' => $toEmail,          //(required) recipient's email
+                'name' => $toName         // (optional) recipient's name
             ],
-            'fromEmail' => $fromEmail, //(optional) recipient's email
-            'fromName' => $fromName,  //(optional) recipient's email
-            'link' => $link,           //(required) link for confirming registration
-            'subject' => $subject,      //(optional)
+            'fromEmail' => $fromEmail,    //(optional) recipient's email
+            'fromName' => $fromName,      //(optional) recipient's email
+            'link' => $link,              //(required) link for confirming registration
+            'subject' => $subject,        //(optional)
            ];
            
 <a name="welcome_email"><h4>Welcome Email</h4></a>
@@ -216,12 +216,12 @@ All services return same formation of standardized response
    
     $data = [
         'recipients' => [
-            'email' => $toEmail, //(required)
-            'name'  => $toName   //(optional)
+            'email' => $toEmail,    //(required)
+            'name'  => $toName      //(optional)
         ],
-        'fromEmail' => $fromEmail, //(optional)
-        'fromName' => $fromName,   //(optional)
-        'subject' => $subject,     //(optional)
+        'fromEmail' => $fromEmail,  //(optional)
+        'fromName' => $fromName,    //(optional)
+        'subject' => $subject,      //(optional)
     ];
                
 <a name="reset_password_email"><h4>Reset Password Email</h4></a>
@@ -234,8 +234,8 @@ All services return same formation of standardized response
    
     $data = [
         'recipients' =>[
-            'email' => $toEmail,  //(required)
-            'name' => $toName     //(optional)
+            'email' => $toEmail,   //(required)
+            'name' => $toName      //(optional)
         ],
         'fromEmail' => $fromEmail, //(optional)
         'fromName' => $fromName,   //(optional)
@@ -258,8 +258,8 @@ All services return same formation of standardized response
         'fromName' => 'Cruise Watch',                           //(optional)
         "links"=> [
             'details' => 'https://www.cruisewatch.com/',        //(required) variable in the template
-            "configure"=>"https://www.cruisewatch.com/",        //(required) variable in the templat
-            "unsubscribe"=>"https://www.cruisewatch.com/"       //(required) variable in the templat
+            "configure"=>"https://www.cruisewatch.com/",        //(required) variable in the template
+            "unsubscribe"=>"https://www.cruisewatch.com/"       //(required) variable in the template
         ],
         "alert" => [
             "trip_name"=>"Trip to Africa",                      //(required) variable in the template
@@ -491,7 +491,7 @@ Price Alert Email
  > 
     php artisan contact
 
-
+s
 <a name="contact_mega_services_test"><h3>Contact MegaData Services Test</h3></a>
 
  > 
