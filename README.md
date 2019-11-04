@@ -21,6 +21,7 @@
         * ##### [Price Alert Email](#price_alert_email)
    * #### [Contacts](#contacts_anchor)
    * #### [Contacts Attributes](#contacts_attributes_anchor)
+   * #### [Contacts List](#contacts_list_anchor)
 * ### [Webhook](#webhook_anchor)
 * ### [Tests](#tests_anchor)
    * #### [Email Services Test](#email_services_test)
@@ -368,6 +369,78 @@ update additional attributes of a contact:
             [
                 'Name' => "country",
                 'Value' => "china"
+            ],
+            ...
+        ]
+    ];
+    
+<a name="contacts_list_anchor"><h3>Contacts Lists</h3></a>    
+
+ > 
+    $contactList = new ContactListService(MailCommonContract $mjV3);
+
+get a contact list:
+ > 
+    $contactList->get($id);
+    
+ > Parameters
+
+    $id : 21242141  //contact list id
+          
+get all contacts list:
+ > 
+    $contactList->getAll();
+    
+create a new contact list:
+
+ > 
+    $contactList->create($data);
+    
+ > Parameters
+
+    $data = [
+        'name' => $name //(required)
+    ];
+    
+update a new contact list:
+
+ > 
+    $contactList->update($data);
+    
+ > Parameters
+
+    $data = [
+        'id' => $id,     //(required)
+        'name' => $name  //(required)
+    ];
+
+update multiple contacts to multiple lists:
+Actions:
+
+        'addforce',   # adds the contact and resets the unsub status to false
+        'addnoforce', # adds the contact and does not change the subscription status of the contact
+        'remove',     # removes the contact from the list
+        'unsub'       # unsubscribes a contact from the list
+
+ > 
+    $contactList->contactsManagement($data);
+    
+ > Parameters
+
+    $data = [
+        'contacts' => [
+            "duyanguk@163.com",         //(required)
+            "duyang48484848@gmail.com",
+            ...
+        ],
+        'contactLists' => [
+            [
+                'action' => "addforce",  //(required)
+                'listId' => "10125920"   //(required)
+            ],
+            [
+                'action' => "addnoforce",
+                'listId' => "10125919"
             ],
             ...
         ]

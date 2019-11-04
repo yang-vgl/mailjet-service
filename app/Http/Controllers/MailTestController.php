@@ -299,14 +299,6 @@ class MailTestController extends Controller
                     'action' => "addnoforce",
                     'listId' => "10125919"
                 ],
-                [
-                    'action' => "remove",
-                    'listId' => "2083567"
-                ],
-                [
-                    'action' => "unsub",
-                    'listId' => "2095160"
-                ]
             ]
         ];
         $data = ['id' => 10125919, 'name' => 'contact list test 3'];
