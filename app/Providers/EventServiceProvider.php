@@ -6,6 +6,7 @@ use App\Events\AccountCreate;
 use App\Events\ForgetPassword;
 use App\Events\PriceChange;
 use App\Listeners\AccountConfirm;
+use App\Listeners\EmailEventSubscriber;
 use App\Listeners\PriceAlert;
 use App\Listeners\ResetPassword;
 use App\Listeners\Welcome;
@@ -22,21 +23,21 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-        AccountCreate::class => [
-            AccountConfirm::class
-        ],
-        \App\Events\AccountConfirm::class => [
-            Welcome::class
-        ],
-        ForgetPassword::class => [
-            ResetPassword::class
-        ],
-        PriceChange::class => [
-            PriceAlert::class
-        ]
+//        Registered::class => [
+//            SendEmailVerificationNotification::class,
+//        ],
+//        AccountCreate::class => [
+//            AccountConfirm::class
+//        ],
+//        \App\Events\AccountConfirm::class => [
+//            Welcome::class
+//        ],
+//        ForgetPassword::class => [
+//            ResetPassword::class
+//        ],
+//        PriceChange::class => [
+//            PriceAlert::class
+//        ]
     ];
 
     /**
@@ -50,4 +51,14 @@ class EventServiceProvider extends ServiceProvider
 
         //
     }
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        EmailEventSubscriber::class,
+    ];
+
 }
