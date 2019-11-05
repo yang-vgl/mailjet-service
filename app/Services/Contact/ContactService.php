@@ -29,20 +29,20 @@ class ContactService
             'Name'  =>  isset($data['name']) ? $data['name'] : '',
             'IsExcludedFromCampaigns' => isset($data['isExcludedFromCampaigns']) ? $data['isExcludedFromCampaigns'] : true
         ]]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
     public function getAll()
     {
         $res = $this->mjV3->get(Resources::$Contact);
-        return $this->formatResponse($res);
+        return $res->format();
 
     }
 
     public function get($id)
     {
         $res = $this->mjV3->get(Resources::$Contact, ['id' => $id]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
     public function update($data)
@@ -52,7 +52,7 @@ class ContactService
             return $this->response(false, $res['msg']);
         }
         $res = $this->mjV3->put(Resources::$Contact, ['id' => $data['email'], 'body' => $res['data']]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
 

@@ -70,7 +70,7 @@ class Contact extends Command
                 $data = [
                     'email' => $email,
                     'isExcludedFromCampaigns' => $isExcludedFromCampaigns,
-                    'Name' => $Name
+                    'name' => $Name
                 ];
                 print_r($contact->update($data));
                 break;

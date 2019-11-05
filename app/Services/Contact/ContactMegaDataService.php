@@ -28,7 +28,7 @@ class ContactMegaDataService
             'Datatype' => $data['dataType'],
             'Name' => $data['name'],
         ]]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
     public function update($data)
@@ -40,7 +40,7 @@ class ContactMegaDataService
         $res = $this->mjV3->put(Resources::$Contactdata, ['id' =>$data['email'], 'body' =>[
             'Data' =>  $data['data']
         ]]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
 }

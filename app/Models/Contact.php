@@ -21,14 +21,10 @@ class Contact
         }
         $body = [];
         if(isset($data['isExcludedFromCampaigns'])){
-            $body = [
-                'IsExcludedFromCampaigns' => $data['isExcludedFromCampaigns']
-            ];
+            $body['IsExcludedFromCampaigns'] = $data['isExcludedFromCampaigns'];
         }
         if(isset($data['name'])){
-            $body = [
-                'Name' => $data['name']
-            ];
+            $body['Name'] = $data['name'];
         }
 
         return ['status' => true, 'data' => $body];

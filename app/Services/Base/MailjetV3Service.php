@@ -4,6 +4,7 @@ namespace App\Services\Base;
 
 use App\Contracts\MailCommonContract;
 use App\Contracts\MailTransactionalContract;
+use App\Utils\Response;
 use Mailjet\Client;
 
 class MailjetV3Service implements MailCommonContract
@@ -40,9 +41,12 @@ class MailjetV3Service implements MailCommonContract
         try{
             $response = $this->client->post($resource, $args, $options);
         }catch(\Exception $e){
-            return ['status' => false, 'msg' => $e->getMessage(), 'data' => ''];
+            return (new Response(false, $e->getMessage()));
         }
-        return ['status' => true, 'msg' => '' , 'data' => $response];
+        if(!$response->success()){
+            return (new Response(false, $response->getBody()));
+        }
+        return (new Response(true, '', $response->getData()));
     }
 
     public function get($resource, array $args = [], array $options = [])
@@ -50,9 +54,12 @@ class MailjetV3Service implements MailCommonContract
         try{
             $response = $this->client->get($resource, $args, $options);
         }catch(\Exception $e){
-            return ['status' => false, 'msg' => $e->getMessage()];
+            return (new Response(false, $e->getMessage()));
         }
-        return ['status' => true, 'data' => $response];
+        if(!$response->success()){
+            return (new Response(false, $response->getBody()));
+        }
+        return (new Response(true, '', $response->getData()));
     }
 
     public function put($resource, array $args = [], array $options = [])
@@ -60,9 +67,12 @@ class MailjetV3Service implements MailCommonContract
         try{
             $response = $this->client->put($resource, $args, $options);
         }catch(\Exception $e){
-            return ['status' => false, 'msg' => $e->getMessage()];
+            return (new Response(false, $e->getMessage()));
         }
-        return ['status' => true, 'data' => $response];
+        if(!$response->success()){
+            return (new Response(false, $response->getBody()));
+        }
+        return (new Response(true, '', $response->getData()));
     }
 
 

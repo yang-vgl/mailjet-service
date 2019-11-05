@@ -6,6 +6,7 @@ use App\Contracts\MailCommonContract;
 use App\Models\Contact;
 use App\Models\ContactList;
 use App\Utils\Common;
+use App\Utils\Response;
 use Mailjet\Resources;
 
 class ContactListService
@@ -23,48 +24,51 @@ class ContactListService
     {
         $res = ContactList::validateCreate($data);
         if(!$res['status']){
-            return $this->response(false, $res['msg']);
+            $res = new Response(false, $res['msg']);
+            return $res->format();
         }
         $res = $this->mjV3->post(Resources::$Contactslist, ['body' => [
             'Name'  =>  $data['name'],
         ]]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
     public function getAll()
     {
         $res = $this->mjV3->get(Resources::$Contactslist);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
     public function get($id)
     {
         $res = $this->mjV3->get(Resources::$Contactslist, ['id' => $id]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
     public function update($data)
     {
         $res = ContactList::validateUpdate($data);
         if(!$res['status']){
-            return $this->response(false, $res['msg']);
+            $res = new Response(false, $res['msg']);
+            return $res->format();
         }
         $res = $this->mjV3->put(Resources::$Contactslist, ['id' => $data['id'], 'body' => [
             'Name' => $data['name']
         ]]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
     public function contactsManagement($data)
     {
         $res = ContactList::validateContactsManagement($data);
         if(!$res['status']){
-            return $this->response(false, $res['msg']);
+            $res = new Response(false, $res['msg']);
+            return $res->format();
         }
         $res = $this->mjV3->post(Resources::$ContactManagemanycontacts, [ 'body' =>
             $res['data']
         ]);
-        return $this->formatResponse($res);
+        return $res->format();
     }
 
 
