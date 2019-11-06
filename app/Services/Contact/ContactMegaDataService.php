@@ -5,6 +5,7 @@ namespace App\Services\Contact;
 use App\Contracts\MailCommonContract;
 use App\Models\ContactMetaData;
 use App\Utils\Common;
+use App\Utils\Response;
 use Mailjet\Resources;
 
 class ContactMegaDataService
@@ -22,7 +23,8 @@ class ContactMegaDataService
     {
         $res =  ContactMetaData::validateCreate($data);
         if(!$res['status']){
-            return $this->response(false, $res['msg']);
+            $res = new Response(false, $res['msg']);
+            return $res->format();
         }
         $res =  $this->mjV3->post(Resources::$Contactmetadata, ['body' => [
             'Datatype' => $data['dataType'],
@@ -35,7 +37,8 @@ class ContactMegaDataService
     {
         $res =  ContactMetaData::validateUpdate($data);
         if(!$res['status']){
-            return $this->response(false, $res['msg']);
+            $res = new Response(false, $res['msg']);
+            return $res->format();
         }
         $res = $this->mjV3->put(Resources::$Contactdata, ['id' =>$data['email'], 'body' =>[
             'Data' =>  $data['data']

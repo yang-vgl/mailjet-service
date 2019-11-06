@@ -18,8 +18,6 @@ trait Common
         return $response->format();
     }
 
-
-
     public static function response($status, $msg='', $data='')
     {
         return json_encode([
@@ -27,18 +25,6 @@ trait Common
             'msg' => $msg,
             'data' => $data
         ]);
-    }
-
-    public function formatResponse($res)
-    {
-        if(!$res['status']){
-            return $this->response(false, $res['msg']);
-        }
-        if($res['data']->success()){
-            return $this->response(true, '', $res['data']->getData());
-        }else{
-            return $this->response(false, $res['data']->getBody());
-        }
     }
 
 }
