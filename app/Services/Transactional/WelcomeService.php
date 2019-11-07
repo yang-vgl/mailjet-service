@@ -8,17 +8,8 @@ use App\Utils\Common;
 
 class WelcomeService
 {
-    protected $mjV31;
 
     use Common;
-
-    /**
-     * @param MailTransactionalContract $mjV31
-     */
-    public function __construct( MailTransactionalContract $mjV31)
-    {
-        $this->mjV31 = $mjV31;
-    }
 
     public function send(array $data)
     {

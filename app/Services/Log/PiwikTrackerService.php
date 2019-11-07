@@ -10,7 +10,9 @@
  * @category Piwik
  * @package PiwikTracker
  */
-namespace App\Libraries;
+namespace App\Services\Log;
+use App\Contracts\LogContract;
+
 /**
  * PiwikTracker implements the Matomo Tracking Web API.
  *
@@ -19,7 +21,7 @@ namespace App\Libraries;
  * @package PiwikTracker
  * @api
  */
-class PiwikTracker
+class PiwikTrackerService implements LogContract
 {
     /**
      * Piwik base URL, for example http://example.org/piwik/
@@ -1511,7 +1513,7 @@ class PiwikTracker
     /**
      * @ignore
      */
-    protected function sendRequest($url, $method = 'GET', $data = null, $force = false)
+    public function sendRequest($url, $method = 'GET', $data = null, $force = false)
     {
         self::$DEBUG_LAST_REQUESTED_URL = $url;
 
@@ -1884,9 +1886,9 @@ class PiwikTracker
     protected static function getCurrentUrl()
     {
         return self::getCurrentScheme() . '://'
-        . self::getCurrentHost()
-        . self::getCurrentScriptName()
-        . self::getCurrentQueryString();
+            . self::getCurrentHost()
+            . self::getCurrentScriptName()
+            . self::getCurrentQueryString();
     }
 
     /**

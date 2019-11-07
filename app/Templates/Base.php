@@ -42,6 +42,10 @@ class Base
         $this->recipients = $data['recipients'];
     }
 
+    public function getSubject() {
+        return $this->subject;
+    }
+
     public function getError() {
         return $this->error;
     }
