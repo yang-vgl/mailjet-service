@@ -22,8 +22,7 @@ class ContactMegaDataService
     public function create($data)
     {
         $res =  ContactMetaData::validateCreate($data);
-        if(!$res['status']){
-            $res = new Response(false, $res['msg']);
+        if(!$res->getStatus()){
             return $res->format();
         }
         $res =  $this->mjV3->post(Resources::$Contactmetadata, ['body' => [
@@ -36,8 +35,7 @@ class ContactMegaDataService
     public function update($data)
     {
         $res =  ContactMetaData::validateUpdate($data);
-        if(!$res['status']){
-            $res = new Response(false, $res['msg']);
+        if(!$res->getStatus()){
             return $res->format();
         }
         $res = $this->mjV3->put(Resources::$Contactdata, ['id' =>$data['email'], 'body' =>[

@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+use App\Utils\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -19,9 +20,9 @@ class ContactList
             'name' => 'required|string',
         ]);
         if ($validator->fails()) {
-            return ['status' => false,  'msg' => $validator->errors()->getMessages()];
+            return(new Response(false, $validator->errors()->getMessages()));
         }
-        return ['status' => true, 'data' => $data];
+        return (new Response(true, '', $data));
     }
 
     public static function validateUpdate($data)
@@ -31,9 +32,9 @@ class ContactList
             'name' => 'required',
         ]);
         if ($validator->fails()) {
-            return ['status' => false,  'msg' => $validator->errors()->getMessages()];
+            return(new Response(false, $validator->errors()->getMessages()));
         }
-        return ['status' => true, 'data' => $data];
+        return (new Response(true, '', $data));
     }
 
     public static function validateContactsManagement($data)
@@ -48,7 +49,7 @@ class ContactList
             'contactLists.*.listId' => 'required|integer',
         ]);
         if ($validator->fails()) {
-            return ['status' => false,  'msg' => $validator->errors()->getMessages()];
+            return(new Response(false, $validator->errors()->getMessages()));
         }
         $body = [];
         foreach($data['contacts'] as $val){
@@ -61,7 +62,7 @@ class ContactList
                 'ListID' => $val['listId'],
             ];
         }
-        return ['status' => true, 'data' => $body];
+        return (new Response(true, '', $body));
     }
 
 

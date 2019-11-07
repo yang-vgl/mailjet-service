@@ -14,6 +14,11 @@ class Response
         $this->response = $response;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
     public function getResponse()
     {
         return $this->response;

@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 use App\Utils\Common;
+use App\Utils\Response;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -17,8 +18,9 @@ class Contact
             'name'=> 'filled|string'
         ]);
         if ($validator->fails()) {
-            return ['status' => false,  'msg' => $validator->errors()->getMessages()];
+            return(new Response(false, $validator->errors()->getMessages()));
         }
+
         $body = [];
         if(isset($data['isExcludedFromCampaigns'])){
             $body['IsExcludedFromCampaigns'] = $data['isExcludedFromCampaigns'];
@@ -27,7 +29,7 @@ class Contact
             $body['Name'] = $data['name'];
         }
 
-        return ['status' => true, 'data' => $body];
+        return (new Response(true, '', $body));
     }
 
     public static function validateCreate($data)
@@ -38,9 +40,9 @@ class Contact
             'isExcludedFromCampaigns' => 'filled|boolean',
         ]);
         if ($validator->fails()) {
-            return ['status' => false,  'msg' => $validator->errors()->getMessages()];
+            return(new Response(false, $validator->errors()->getMessages()));
         }
-        return ['status' => true, 'data' => $data];
+        return (new Response(true, '', $data));
     }
 
 }

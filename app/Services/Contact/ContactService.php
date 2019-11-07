@@ -21,8 +21,8 @@ class ContactService
     public function create($data)
     {
         $res = Contact::validateCreate($data);
-        if(!$res['status']){
-            return $this->response(false, $res['msg']);
+        if(!$res->getStatus()){
+            return $res->format();
         }
         $res = $this->mjV3->post(Resources::$Contact, ['body' => [
             'Email' =>  $data['email'],
@@ -48,10 +48,10 @@ class ContactService
     public function update($data)
     {
         $res = Contact::validateUpdate($data);
-        if(!$res['status']){
-            return $this->response(false, $res['msg']);
+        if(!$res->getStatus()){
+            return $res->format();
         }
-        $res = $this->mjV3->put(Resources::$Contact, ['id' => $data['email'], 'body' => $res['data']]);
+        $res = $this->mjV3->put(Resources::$Contact, ['id' => $data['email'], 'body' => $res->getResponse()]);
         return $res->format();
     }
 
