@@ -28,3 +28,6 @@ Route::get('/test/contact/update', 'MailTestController@testContactUpdate');
 Route::get('/test/contact/mega', 'MailTestController@testMega');
 Route::get('/test/contact/mega/update', 'MailTestController@testMegaUpdate');
 Route::get('/test/contact/list/create', 'MailTestController@testContactList');
+
+Route::get('/test/piwik', 'PiwikTestController@testPiwik');
+
