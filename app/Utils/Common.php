@@ -25,7 +25,7 @@ trait Common
     {
         if($template->getError()){
             $res = new Response(false, $template->getError());
-            PiwikTrack::dispatch($this->piwik, $template->getSubject(), $template->getError());
+            PiwikTrack::dispatch($this->piwik, $template->getSubject(), json_encode($template->getError()));
             return $res->format();
         }
         $body = $template->getBody();
