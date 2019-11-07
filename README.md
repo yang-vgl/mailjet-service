@@ -22,6 +22,7 @@
    * #### [Contacts](#contacts_anchor)
    * #### [Contacts Attributes](#contacts_attributes_anchor)
    * #### [Contacts List](#contacts_list_anchor)
+   * #### [Piwik Tracking](#piwik_tracking_anchor)
 * ### [Webhook](#webhook_anchor)
 * ### [Tests](#tests_anchor)
    * #### [Email Services Test](#email_services_test)
@@ -446,6 +447,18 @@ Actions:
             ...
         ]
     ];
+    
+<a name="piwik_tracking_anchor"><h3>Piwik Tracking</h3></a>      
+
+Asynchronous queue log set to Piwik after every transactional email event  
+
+Test Server:
+
+https://asia-cloud-test-48-duyang.matomo.cloud/index.php
+
+username: duyanguk   
+
+password: 3yzHyGh44y
     
 <a name="webhook_anchor"><h1>Web Hook</h1></a>   
 
