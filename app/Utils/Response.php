@@ -26,11 +26,13 @@ class Response
 
     public function format()
     {
-        return json_encode([
+        return json_encode(
+            [
             'status' =>  $this->status,
             'msg' => $this->error,
             'data' => $this->response
-        ]);
+            ]
+        );
     }
 
 }

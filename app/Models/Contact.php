@@ -12,20 +12,22 @@ class Contact
 
     public static function validateUpdate($data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'email' => 'required',
             'isExcludedFromCampaigns'=> 'filled|boolean',
             'name'=> 'filled|string'
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             return(new Response(false, $validator->errors()->getMessages()));
         }
 
         $body = [];
-        if(isset($data['isExcludedFromCampaigns'])){
+        if(isset($data['isExcludedFromCampaigns'])) {
             $body['IsExcludedFromCampaigns'] = $data['isExcludedFromCampaigns'];
         }
-        if(isset($data['name'])){
+        if(isset($data['name'])) {
             $body['Name'] = $data['name'];
         }
 
@@ -34,11 +36,13 @@ class Contact
 
     public static function validateCreate($data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'email' => 'required|email',
             'name' => 'filled|string',
             'isExcludedFromCampaigns' => 'filled|boolean',
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             return(new Response(false, $validator->errors()->getMessages()));
         }

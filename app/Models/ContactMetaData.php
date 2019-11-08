@@ -21,13 +21,15 @@ class ContactMetaData
 
     public static function validateCreate($data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'name' => 'required|string',
             'dataType' => [
                 'required',
                 Rule::in(self::DATATYPE),
             ]
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             return(new Response(false, $validator->errors()->getMessages()));
         }
@@ -36,11 +38,13 @@ class ContactMetaData
 
     public static function validateUpdate($data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'email' => 'required|email',
             'data.*.Name' => 'required',
             'data.*.Value' => 'required',
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             return(new Response(false, $validator->errors()->getMessages()));
         }

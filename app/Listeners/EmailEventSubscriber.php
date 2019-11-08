@@ -22,18 +22,18 @@ class EmailEventSubscriber implements ShouldQueue
 
     /**
      * Create the event listener.
+     *
      * @param AccountConfirmationService $account_confirmation_service
-     * @param WelcomeService $welcome_service
-     * @param ResetPasswordService $reset_password_service
-     * @param PriceAlertService $price_alert_service
+     * @param WelcomeService             $welcome_service
+     * @param ResetPasswordService       $reset_password_service
+     * @param PriceAlertService          $price_alert_service
      */
     public function __construct(
         AccountConfirmationService $account_confirmation_service,
         WelcomeService $welcome_service,
         ResetPasswordService $reset_password_service,
         PriceAlertService $price_alert_service
-    )
-    {
+    ) {
         $this->account_confirmation_service = $account_confirmation_service;
         $this->welcome_service = $welcome_service;
         $this->reset_password_service = $reset_password_service;
@@ -42,6 +42,7 @@ class EmailEventSubscriber implements ShouldQueue
 
     /**
      * Handle user login events.
+     *
      * @param $event
      */
     public function handleAccountCreate($event)
@@ -53,6 +54,7 @@ class EmailEventSubscriber implements ShouldQueue
 
     /**
      * Handle user logout events.
+     *
      * @param $event
      */
     public function handleAccountConfirm($event)
@@ -64,6 +66,7 @@ class EmailEventSubscriber implements ShouldQueue
 
     /**
      * Handle user logout events.
+     *
      * @param $event
      */
     public function handleForgetPassword($event)
@@ -75,6 +78,7 @@ class EmailEventSubscriber implements ShouldQueue
 
     /**
      * Handle user logout events.
+     *
      * @param $event
      */
     public function handlePriceChange($event)
@@ -87,7 +91,7 @@ class EmailEventSubscriber implements ShouldQueue
     /**
      * Register the listeners for the subscriber.
      *
-     * @param  Dispatcher  $events
+     * @param Dispatcher $events
      */
     public function subscribe($events)
     {

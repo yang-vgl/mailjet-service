@@ -47,48 +47,48 @@ class ContactList extends Command
         $action = $this->choice('What Action?', ['get', 'getAll', 'create', 'update', 'contactsManagement']);
         switch($action)
         {
-            case 'get':
-                $id = $this->ask('Enter contact list id:');
-                print_r($contactList->get($id));
-                break;
-            case 'getAll':
-                print_r($contactList->getAll());
-                break;
-            case 'create':
-                $name = $this->ask('Enter list name:');
-                $data = [
-                    'name' => $name
-                ];
-                print_r($contactList->create($data));
-                break;
-            case 'update':
-                $id = $this->ask('Enter list id:');
-                $name = $this->ask('Enter name:');
-                $data = [
-                    'id' => $id,
-                    'name' => $name
-                ];
-                print_r($contactList->update($data));
-                break;
-            case 'contactsManagement':
-                $data = [];
-                $data['contacts'] = [];
-                do{
-                    $email = $this->ask('Enter email:');
-                    array_push( $data['contacts'], $email);
-                }while($this->confirm('add another email?'));
+        case 'get':
+            $id = $this->ask('Enter contact list id:');
+            print_r($contactList->get($id));
+            break;
+        case 'getAll':
+            print_r($contactList->getAll());
+            break;
+        case 'create':
+            $name = $this->ask('Enter list name:');
+            $data = [
+                'name' => $name
+            ];
+            print_r($contactList->create($data));
+            break;
+        case 'update':
+            $id = $this->ask('Enter list id:');
+            $name = $this->ask('Enter name:');
+            $data = [
+                'id' => $id,
+                'name' => $name
+            ];
+            print_r($contactList->update($data));
+            break;
+        case 'contactsManagement':
+            $data = [];
+            $data['contacts'] = [];
+            do{
+                $email = $this->ask('Enter email:');
+                array_push($data['contacts'], $email);
+            }while($this->confirm('add another email?'));
 
-                do{
-                    $list = $this->ask('Enter list id:');
-                    $action = $this->choice('What Action?', ContactListModel::ACTIONS);
-                    $data['contactLists'][] =
-                        [
-                            'listId' => $list,
-                            'action' => $action,
-                        ];
-                }while($this->confirm('add another list?'));
-                print_r($contactList->contactsManagement($data));
-                break;
+            do{
+                $list = $this->ask('Enter list id:');
+                $action = $this->choice('What Action?', ContactListModel::ACTIONS);
+                $data['contactLists'][] =
+                    [
+                        'listId' => $list,
+                        'action' => $action,
+                    ];
+            }while($this->confirm('add another list?'));
+            print_r($contactList->contactsManagement($data));
+            break;
         }
     }
 

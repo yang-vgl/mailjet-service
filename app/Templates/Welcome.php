@@ -12,18 +12,19 @@ class Welcome extends Base
 
     public function __construct($data)
     {
-        if($this->validate($data))
-        {
+        if ($this->validate($data)) {
             $this->baseInit($data);
         }
     }
 
     public function validate(array $data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'recipients.email' => 'required|email',
             'recipients.name' => 'filled|string',
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             $this->error = $validator->errors()->getMessages();
             return false;
@@ -31,7 +32,8 @@ class Welcome extends Base
         return true;
     }
 
-    public function getBody() {
+    public function getBody()
+    {
         $toName = isset($this->recipients['name']) ? $this->recipients['name'] : $this->firstName;
             $message[] = [
                 'From' => [
@@ -51,10 +53,10 @@ class Welcome extends Base
                     'firstname' => $toName
                 ]
             ];
-        $body = [
+            $body = [
             'Messages' => $message
-        ];
-        return $body;
+            ];
+            return $body;
     }
 
 

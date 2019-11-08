@@ -8,17 +8,19 @@ class ContactList
 {
 
     const ACTIONS = [
-        'addforce',   # adds the contact and resets the unsub status to false
-        'addnoforce', # adds the contact and does not change the subscription status of the contact
-        'remove',     # removes the contact from the list
-        'unsub'       # unsubscribes a contact from the list
+        'addforce',   // adds the contact and resets the unsub status to false
+        'addnoforce', // adds the contact and does not change the subscription status of the contact
+        'remove',     // removes the contact from the list
+        'unsub'       // unsubscribes a contact from the list
     ];
 
     public static function validateCreate($data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'name' => 'required|string',
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             return(new Response(false, $validator->errors()->getMessages()));
         }
@@ -27,10 +29,12 @@ class ContactList
 
     public static function validateUpdate($data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'id' => 'required',
             'name' => 'required',
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             return(new Response(false, $validator->errors()->getMessages()));
         }
@@ -39,7 +43,8 @@ class ContactList
 
     public static function validateContactsManagement($data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'contacts' => 'required|array',
             'contacts.*' => 'required|email',
             'contactLists.*.action' =>  [
@@ -47,7 +52,8 @@ class ContactList
                 Rule::in(self::ACTIONS),
             ],
             'contactLists.*.listId' => 'required|integer',
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             return(new Response(false, $validator->errors()->getMessages()));
         }

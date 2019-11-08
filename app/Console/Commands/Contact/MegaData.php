@@ -47,32 +47,32 @@ class MegaData extends Command
         $action = $this->choice('What Action?', ['create', 'update']);
         switch($action)
         {
-            case 'create':
-                $dataType = $this->choice('dataType:', ContactMetaData::DATATYPE);
+        case 'create':
+            $dataType = $this->choice('dataType:', ContactMetaData::DATATYPE);
+            $name = $this->ask('Enter name:');
+            $megaData = [
+                'dataType' => $dataType,
+                'name' => $name,
+            ];
+            print_r($contact->create($megaData));
+            break;
+        case 'update':
+            $email = $this->ask('Enter email:');
+            $data = [];
+            do{
                 $name = $this->ask('Enter name:');
-                $megaData = [
-                    'dataType' => $dataType,
-                    'name' => $name,
+                $value = $this->ask('Enter value:');
+                $data[] = [
+                    'Name' => $name,
+                    'Value' => $value
                 ];
-                print_r($contact->create($megaData));
-                break;
-            case 'update':
-                $email = $this->ask('Enter email:');
-                $data = [];
-                do{
-                    $name = $this->ask('Enter name:');
-                    $value = $this->ask('Enter value:');
-                    $data[] = [
-                        'Name' => $name,
-                        'Value' => $value
-                    ];
-                }while($this->confirm('add another value?'));
-                $megaUpdateData = [
-                    'email' => $email,
-                    'data' => $data
-                ];
-                print_r($contact->update($megaUpdateData));
-                break;
+            }while($this->confirm('add another value?'));
+            $megaUpdateData = [
+                'email' => $email,
+                'data' => $data
+            ];
+            print_r($contact->update($megaUpdateData));
+            break;
         }
     }
 

@@ -22,25 +22,29 @@ class ContactMegaDataService
     public function create($data)
     {
         $res =  ContactMetaData::validateCreate($data);
-        if(!$res->getStatus()){
+        if (!$res->getStatus()) {
             return $res->format();
         }
-        $res =  $this->mjV3->post(Resources::$Contactmetadata, ['body' => [
+        $res =  $this->mjV3->post(
+            Resources::$Contactmetadata, ['body' => [
             'Datatype' => $data['dataType'],
             'Name' => $data['name'],
-        ]]);
+            ]]
+        );
         return $res->format();
     }
 
     public function update($data)
     {
         $res =  ContactMetaData::validateUpdate($data);
-        if(!$res->getStatus()){
+        if (!$res->getStatus()) {
             return $res->format();
         }
-        $res = $this->mjV3->put(Resources::$Contactdata, ['id' =>$data['email'], 'body' =>[
+        $res = $this->mjV3->put(
+            Resources::$Contactdata, ['id' => $data['email'], 'body' => [
             'Data' =>  $data['data']
-        ]]);
+            ]]
+        );
         return $res->format();
     }
 

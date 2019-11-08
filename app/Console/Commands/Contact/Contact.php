@@ -45,35 +45,35 @@ class Contact extends Command
         $action = $this->choice('What Action?', ['get', 'getAll', 'create', 'update']);
         switch($action)
         {
-            case 'get':
-                $id = $this->ask('Enter email:');
-                print_r($contact->get($id));
-                break;
-            case 'getAll':
-                print_r($contact->getAll());
-                break;
-            case 'create':
-                $email = $this->ask('Enter email:');
-                $isExcludedFromCampaigns = $this->choice('value?', [0, 1]);
-                $Name = $this->ask('Enter name:');
-                $data = [
-                    'email' => $email,
-                    'isExcludedFromCampaigns' => $isExcludedFromCampaigns,
-                    'name' => $Name
-                ];
-                print_r($contact->create($data));
-                break;
-            case 'update':
-                $email = $this->ask('Enter email:');
-                $isExcludedFromCampaigns = $this->choice('value?', [0, 1]);
-                $Name = $this->ask('Enter name:');
-                $data = [
-                    'email' => $email,
-                    'isExcludedFromCampaigns' => $isExcludedFromCampaigns,
-                    'name' => $Name
-                ];
-                print_r($contact->update($data));
-                break;
+        case 'get':
+            $id = $this->ask('Enter email:');
+            print_r($contact->get($id));
+            break;
+        case 'getAll':
+            print_r($contact->getAll());
+            break;
+        case 'create':
+            $email = $this->ask('Enter email:');
+            $isExcludedFromCampaigns = $this->choice('value?', [0, 1]);
+            $Name = $this->ask('Enter name:');
+            $data = [
+                'email' => $email,
+                'isExcludedFromCampaigns' => $isExcludedFromCampaigns,
+                'name' => $Name
+            ];
+            print_r($contact->create($data));
+            break;
+        case 'update':
+            $email = $this->ask('Enter email:');
+            $isExcludedFromCampaigns = $this->choice('value?', [0, 1]);
+            $Name = $this->ask('Enter name:');
+            $data = [
+                'email' => $email,
+                'isExcludedFromCampaigns' => $isExcludedFromCampaigns,
+                'name' => $Name
+            ];
+            print_r($contact->update($data));
+            break;
         }
     }
 

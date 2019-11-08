@@ -9,37 +9,37 @@ use Mailjet\Client;
 class MailjetV31Service implements MailTransactionalContract
 {
 
-    private $client;
+    private $_client;
 
     /**
      * Create a new controller instance.
      *
      * @param $key
      * @param $secret
-     * @param bool $call
+     * @param bool  $call
      * @param array $settings
      */
     public function __construct($key, $secret, $call = true, array $settings = [])
     {
-        $this->client = new Client($key, $secret, $call, $settings);
+        $this->_client = new Client($key, $secret, $call, $settings);
         $this->configClient();
     }
 
     public function configClient()
     {
-        $this->client->setTimeout(100);
-        $this->client->setConnectionTimeout(100);
+        $this->_client->setTimeout(100);
+        $this->_client->setConnectionTimeout(100);
     }
     public function getClient()
     {
-        return $this->client;
+        return $this->_client;
     }
 
     /**
      * Trigger a POST request
      *
      * @param array $resource Mailjet Resource/Action pair
-     * @param array $args Request arguments
+     * @param array $args     Request arguments
      * @param array $options
      *
      * @return Response
@@ -47,11 +47,11 @@ class MailjetV31Service implements MailTransactionalContract
     public function post($resource, array $args = [], array $options = [])
     {
         try{
-            $response = $this->client->post($resource, $args, $options);
+            $response = $this->_client->post($resource, $args, $options);
         }catch(\Exception $e){
             return (new Response(false, $e->getMessage()));
         }
-        if(!$response->success()){
+        if (!$response->success()) {
             return (new Response(false, $response->getBody()));
         }
         return (new Response(true, '', $response->getData()));
@@ -61,7 +61,7 @@ class MailjetV31Service implements MailTransactionalContract
      * Trigger a GET request
      *
      * @param array $resource Mailjet Resource/Action pair
-     * @param array $args Request arguments
+     * @param array $args     Request arguments
      * @param array $options
      *
      * @return Response
@@ -69,11 +69,11 @@ class MailjetV31Service implements MailTransactionalContract
     public function get($resource, array $args = [], array $options = [])
     {
         try{
-            $response = $this->client->get($resource, $args, $options);
+            $response = $this->_client->get($resource, $args, $options);
         }catch(\Exception $e){
             return (new Response(false, $e->getMessage()));
         }
-        if(!$response->success()){
+        if (!$response->success()) {
             return (new Response(false, $response->getBody()));
         }
         return (new Response(true, '', $response->getData()));
@@ -83,7 +83,7 @@ class MailjetV31Service implements MailTransactionalContract
      * Trigger a PUT request
      *
      * @param array $resource Mailjet Resource/Action pair
-     * @param array $args Request arguments
+     * @param array $args     Request arguments
      * @param array $options
      *
      * @return Response
@@ -91,11 +91,11 @@ class MailjetV31Service implements MailTransactionalContract
     public function put($resource, array $args = [], array $options = [])
     {
         try{
-            $response = $this->client->put($resource, $args, $options);
+            $response = $this->_client->put($resource, $args, $options);
         }catch(\Exception $e){
             return (new Response(false, $e->getMessage()));
         }
-        if(!$response->success()){
+        if (!$response->success()) {
             return (new Response(false, $response->getBody()));
         }
         return (new Response(true, '', $response->getData()));
@@ -105,7 +105,7 @@ class MailjetV31Service implements MailTransactionalContract
      * Trigger a DELETE request
      *
      * @param array $resource Mailjet Resource/Action pair
-     * @param array $args Request arguments
+     * @param array $args     Request arguments
      * @param array $options
      *
      * @return Response
@@ -113,11 +113,11 @@ class MailjetV31Service implements MailTransactionalContract
     public function delete($resource, array $args = [], array $options = [])
     {
         try{
-            $response = $this->client->delete($resource, $args, $options);
+            $response = $this->_client->delete($resource, $args, $options);
         }catch(\Exception $e){
             return (new Response(false, $e->getMessage()));
         }
-        if(!$response->success()){
+        if (!$response->success()) {
             return (new Response(false, $response->getBody()));
         }
         return (new Response(true, '', $response->getData()));

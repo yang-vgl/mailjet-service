@@ -23,12 +23,14 @@ class ContactListService
     public function create($data)
     {
         $res = ContactList::validateCreate($data);
-        if(!$res->getStatus()){
+        if (!$res->getStatus()) {
             return $res->format();
         }
-        $res = $this->mjV3->post(Resources::$Contactslist, ['body' => [
+        $res = $this->mjV3->post(
+            Resources::$Contactslist, ['body' => [
             'Name'  =>  $data['name'],
-        ]]);
+            ]]
+        );
         return $res->format();
     }
 
@@ -47,24 +49,28 @@ class ContactListService
     public function update($data)
     {
         $res = ContactList::validateUpdate($data);
-        if(!$res->getStatus()){
+        if (!$res->getStatus()) {
             return $res->format();
         }
-        $res = $this->mjV3->put(Resources::$Contactslist, ['id' => $data['id'], 'body' => [
+        $res = $this->mjV3->put(
+            Resources::$Contactslist, ['id' => $data['id'], 'body' => [
             'Name' => $data['name']
-        ]]);
+            ]]
+        );
         return $res->format();
     }
 
     public function contactsManagement($data)
     {
         $res = ContactList::validateContactsManagement($data);
-        if(!$res->getStatus()){
+        if (!$res->getStatus()) {
             return $res->format();
         }
-        $res = $this->mjV3->post(Resources::$ContactManagemanycontacts, [ 'body' =>
+        $res = $this->mjV3->post(
+            Resources::$ContactManagemanycontacts, [ 'body' =>
             $res->getResponse()
-        ]);
+            ]
+        );
         return $res->format();
     }
 

@@ -16,8 +16,7 @@ class PriceAlert extends Base
 
     public function __construct($data)
     {
-        if($this->validate($data))
-        {
+        if($this->validate($data)) {
             $this->baseInit($data);
             $this->init($data);
         }
@@ -25,7 +24,8 @@ class PriceAlert extends Base
 
     public function validate(array $data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make(
+            $data, [
             'recipients.*.email' => 'required|email',
             'recipients.*.name' => 'filled|string',
             'fromEmail' => 'filled|email',
@@ -42,7 +42,8 @@ class PriceAlert extends Base
             'alert.prices.*.change_abs' => 'required|numeric',
             'alert.prices.*.change_rel' => 'required|numeric',
             'alert.prices.*.updated_at' => 'required|date',
-        ]);
+            ]
+        );
         if ($validator->fails()) {
             $this->error = $validator->errors()->getMessages();
             return false;
@@ -58,15 +59,18 @@ class PriceAlert extends Base
         ];
     }
 
-    public function getLink() {
+    public function getLink()
+    {
         return $this->link;
     }
 
-    public function setLink($link) {
+    public function setLink($link)
+    {
         $this->$link = $link;
     }
 
-    public function getBody() {
+    public function getBody()
+    {
         foreach($this->recipients as $recipient){
             $recipientName = isset($recipient['name']) ? $recipient['name'] : $this->firstName;
             $message[] = [

@@ -46,7 +46,7 @@ class Welcome extends Command
         $recipients = [
             'email' => $toEmail,
         ];
-        if($toName){
+        if($toName) {
             $recipients['name'] =  $toName;
         }
         $data = [

@@ -23,30 +23,29 @@ class Base
     public function baseInit($data)
     {
 
-        if(isset($data['fromName']))
-        {
+        if(isset($data['fromName'])) {
             $this->fromName = $data['fromName'];
         }else{
             $this->fromName = config('services.mailjet.From.Name');
         }
-        if(isset($data['fromEmail']))
-        {
+        if(isset($data['fromEmail'])) {
             $this->fromEmail = $data['fromEmail'];
         }else{
             $this->fromEmail = config('services.mailjet.From.Email');
         }
-        if(isset($data['subject']))
-        {
+        if(isset($data['subject'])) {
             $this->subject = $data['subject'];
         }
         $this->recipients = $data['recipients'];
     }
 
-    public function getSubject() {
+    public function getSubject()
+    {
         return $this->subject;
     }
 
-    public function getError() {
+    public function getError()
+    {
         return $this->error;
     }
 

@@ -21,14 +21,19 @@ class ContactService
     public function create($data)
     {
         $res = Contact::validateCreate($data);
-        if(!$res->getStatus()){
+        if (!$res->getStatus()) {
             return $res->format();
         }
-        $res = $this->mjV3->post(Resources::$Contact, ['body' => [
-            'Email' =>  $data['email'],
-            'Name'  =>  isset($data['name']) ? $data['name'] : '',
-            'IsExcludedFromCampaigns' => isset($data['isExcludedFromCampaigns']) ? $data['isExcludedFromCampaigns'] : true
-        ]]);
+        $res = $this->mjV3->post(
+            Resources::$Contact, ['body' => [
+                'Email' =>  $data['email'],
+                'Name'  =>  isset($data['name']) ? $data['name'] : '',
+                'IsExcludedFromCampaigns' =>
+                    isset($data['isExcludedFromCampaigns']) ?
+                        $data['isExcludedFromCampaigns'] :
+                        true
+            ]]
+        );
         return $res->format();
     }
 
@@ -48,10 +53,16 @@ class ContactService
     public function update($data)
     {
         $res = Contact::validateUpdate($data);
-        if(!$res->getStatus()){
+        if (!$res->getStatus()) {
             return $res->format();
         }
-        $res = $this->mjV3->put(Resources::$Contact, ['id' => $data['email'], 'body' => $res->getResponse()]);
+        $res = $this->mjV3->put(
+            Resources::$Contact,
+            [
+                'id' => $data['email'],
+                'body' => $res->getResponse()
+            ]
+        );
         return $res->format();
     }
 

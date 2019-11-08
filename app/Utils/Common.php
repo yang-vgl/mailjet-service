@@ -13,7 +13,7 @@ trait Common
     protected $piwik;
     /**
      * @param MailTransactionalContract $mjV31
-     * @param LogContract $piwik
+     * @param LogContract               $piwik
      */
     public function __construct( MailTransactionalContract $mjV31, LogContract $piwik)
     {
@@ -23,7 +23,7 @@ trait Common
 
     public function sendWithTemplate(Object $template)
     {
-        if($template->getError()){
+        if ($template->getError()) {
             $res = new Response(false, $template->getError());
             PiwikTrack::dispatch($this->piwik, $template->getSubject(), json_encode($template->getError()));
             return $res->format();
