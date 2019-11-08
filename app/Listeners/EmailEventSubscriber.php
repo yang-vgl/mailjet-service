@@ -35,11 +35,6 @@ class EmailEventSubscriber implements ShouldQueue
         print_r($res);
     }
 
-    /**
-     * Handle user logout events.
-     *
-     * @param $event
-     */
     public function handleAccountConfirm($event)
     {
         Log::info("email sent through event-listener");
@@ -47,11 +42,6 @@ class EmailEventSubscriber implements ShouldQueue
         print_r($res);
     }
 
-    /**
-     * Handle user logout events.
-     *
-     * @param $event
-     */
     public function handleForgetPassword($event)
     {
         Log::info("reset password email sent through event-listener");
@@ -59,11 +49,6 @@ class EmailEventSubscriber implements ShouldQueue
         print_r($res);
     }
 
-    /**
-     * Handle user logout events.
-     *
-     * @param $event
-     */
     public function handlePriceChange($event)
     {
         Log::info("price alert email sent through event-listener");
@@ -71,11 +56,6 @@ class EmailEventSubscriber implements ShouldQueue
         print_r($res);
     }
 
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param Dispatcher $events
-     */
     public function subscribe($events)
     {
         $events->listen(

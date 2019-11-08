@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(LogContract::class, function ($app) {
-            $tracker =  new PiwikTrackerService(1);
+            $tracker =  new PiwikTrackerService( $app['config']->get('services.piwik.idSite'));
             $tracker::$URL = $app['config']->get('services.piwik.url');
             return $tracker;
         });

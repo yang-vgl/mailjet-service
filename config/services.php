@@ -62,7 +62,8 @@ return [
     ],
 
     'piwik' => [
-        'url' => 'https://asia-cloud-test-48-duyang.matomo.cloud/matomo.php'
+        'url' => 'https://asia-cloud-test-48-duyang.matomo.cloud/matomo.php',
+        'idSite' => 1
     ]
 
 ];

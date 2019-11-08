@@ -30,7 +30,7 @@ class PiwikTrackerService implements LogContract
      *
      * @var string
      */
-    static public $URL = 'https://asia-cloud-test-48-duyang.matomo.cloud/matomo.php';
+    static public $URL;
 
     /**
      * API Version
