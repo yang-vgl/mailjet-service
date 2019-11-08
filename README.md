@@ -61,7 +61,8 @@
     MAILJET_APISECRET=your_mailjet_secret
     
  run     
-   >           
+   >    
+    php artisan cache:clear       
     php artisan migrate
     php artisan queue:work
     php artisan redis:subscribe(TBD)
@@ -459,6 +460,8 @@ https://asia-cloud-test-48-duyang.matomo.cloud/index.php
 username: duyanguk   
 
 password: 3yzHyGh44y
+   
+![Alt text](./public/imgs/matomo.png?raw=true "Title")
     
 <a name="webhook_anchor"><h1>Web Hook</h1></a>   
 
