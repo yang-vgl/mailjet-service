@@ -129,7 +129,7 @@ Basic services that implement contracts interfaces with Mailjet Server.
 Services that send transactional emails
 
  >
-    /app/Services/Emails/*
+    /app/Services/TransactionalEmailService.php
 
 Services that manage contacts and attributes
 
