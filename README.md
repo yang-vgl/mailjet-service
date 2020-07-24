@@ -106,7 +106,7 @@ Version 3 : for other common services(e.g. contacts, attributes, webhook).
          ],
          'From' => [
              'Email' => "info@cruisewatch.com",
-             'Name' => "Cruise Team"
+             'Name' => "name"
          ],
          //basic HTTP(s) Authentication for webhook callback
          'callback' => [
@@ -256,8 +256,8 @@ All services return same formation of standardized response
 
     $data = [
         'subject' => 'Price Alert',                             //(optional)
-        'fromEmail' => 'info@cruisewatch.com',                  //(optional)
-        'fromName' => 'Cruise Watch',                           //(optional)
+        'fromEmail' => 'email@email.com',                  //(optional)
+        'fromName' => 'name',                           //(optional)
         "links"=> [
             'details' => 'https://www.cruisewatch.com/',        //(required) variable in the template
             "configure"=>"https://www.cruisewatch.com/",        //(required) variable in the template

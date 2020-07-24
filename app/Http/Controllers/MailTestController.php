@@ -16,6 +16,7 @@ use App\Services\Transactional\ResetPasswordService;
 use App\Templates\Confirmation;
 use App\Utils\Common;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Mailjet\Resources;
 
 class MailTestController extends Controller
@@ -30,90 +31,42 @@ class MailTestController extends Controller
      *
      * @param MailTransactionalContract $mjV31
      * @param MailCommonContract $mjV3
-     * @param ResetPasswordService $sync
      */
-    public function __construct(MailTransactionalContract $mjV31, MailCommonContract $mjV3, ResetPasswordService $sync)
+    public function __construct(MailTransactionalContract $mjV31, MailCommonContract $mjV3)
     {
         $this->mjV31 = $mjV31;
         $this->mjV3 = $mjV3;
-        $this->sync = $sync;
     }
 
     public function testDependency()
     {
-        var_dump($this->mjV31);
+       Session::put('SessionToken', 'val1dsda111ue');
+        echo Session::get('SessionToken');
+        Session::save();
+        return view('welcome');
+        exit;
     }
 
     public function testSend(Request $request)
     {
-        print_r($request->all());exit;
-//        $data = [
-//            'subject' => 'test subject',
-//            //'fromEmail' => '',
-//            'fromName' => '1111',
-//            "links"=> [
-//                'details' => 'http://www.google.com',
-//                "configure"=>"http://www.google.com",
-//                "unsubscribe"=>"http://www.google.com"
-//            ],
-//            "alert" => [
-//                "trip_name"=>"11",
-//                "ship_name"=>"11",
-//                "departure_date"=>"2019/12/12 12:01:12",
-//                "prices"=> [
-//                    [
-//                        'is_drop' => 1,
-//                        'cabin_type' =>'1',
-//                        'current' => 11.121,
-//                        'change_abs' => 1,
-//                        'change_rel' => 2,
-//                        'updated_at' => '2019/12/12',
-//                    ],
-//                    [
-//                        'is_drop' => 0,
-//                        'cabin_type' =>'good cabin',
-//                        'current' => 1100,
-//                        'change_abs' => 100,
-//                        'change_rel' => 2,
-//                        'updated_at' => '2019/12/12',
-//                    ]
-//                ]
-//            ],
-//            'recipients' =>[
-//                [
-//                    'email' => 'duyanguk@163.com',
-//                    'name' => 'Yang'
-//                ],
-//                [
-//                    'email' => 'duyang48484848@gmail.com',
-//                ],
-//            ]
-//        ];
-//        $res = $this->sync->send($data);
-//        print_r($res);exit;
-        //event(new PriceChange($data));exit;
-//        $confirm = new Confirmation();
-//        if($confirm->getError()){
-//            return $confirm->getError();
-//        }
-//        $body = $confirm->getBody();
-//        //print_r($body);exit;
         $body1 = [
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => "dadas",
-                        'Name' => "Cruise Watch"
+                        'Email' => "info@cruisewatch.com",
+                        'Name' => "Cruise Team"
                     ],
                     'To' => [
                         [
                             'Email' => "duyanguk@163.com",
-                            'Name' => "You"
+                            'Name' => "Yang Du"
                         ]
                     ],
                     'TemplateID' => 1066812,
                     'TemplateLanguage' => true,
-                    'Subject' => "We have a new price alert for you",
+                    'Subject' => "Price Alert",
+                    'CustomCampaign' => "test_campaign",
+                    'EventPayload' => 'test_pay_load',
                     'Variables' => [
                         "firstname" => "Cruiser",
                         "links"=> [
@@ -133,49 +86,19 @@ class MailTestController extends Controller
                                     'change_abs' => 1,
                                     'change_rel' => 2,
                                     'updated_at' => '1',
+                                ],
+                                [
+                                    'is_drop' => 1,
+                                    'cabin_type' =>'2',
+                                    'current' => 11,
+                                    'change_abs' => 1,
+                                    'change_rel' => 2,
+                                    'updated_at' => '1',
                                 ]
                             ]
                         ]
                     ]
-                ],
-//                [
-//                    'From' => [
-//                        'Email' => "info@cruisewatch.com",
-//                        'Name' => "Cruise Watch"
-//                    ],
-//                    'To' => [
-//                        [
-//                            'Email' => "duyang48484848@gmail.com",
-//                            'Name' => "You"
-//                        ]
-//                    ],
-//                    'TemplateID' => 1066812,
-//                    'TemplateLanguage' => true,
-//                    'Subject' => "We have a new price alert for you",
-//                    'Variables' => [
-//                        "firstname" => "Cruiser",
-//                        "links"=> [
-//                            'details' => 'http://www.google.com',
-//                            "configure"=>"http://www.google.com",
-//                            "unsubscribe"=>"http://www.google.com"
-//                        ],
-//                        "alert" => [
-//                            "trip_name"=>"11",
-//                            "ship_name"=>"11",
-//                            "departure_date"=>"2019/12/12",
-//                            "prices"=> [
-//                                [
-//                                    'is_drop' => 1,
-//                                    'cabin_type' =>'1',
-//                                    'current' => 11,
-//                                    'change_abs' => 1,
-//                                    'change_rel' => 2,
-//                                    'updated_at' => '1',
-//                                ]
-//                            ]
-//                        ]
-//                    ]
-//                ]
+                ]
             ]
         ];
         $response = $this->mjV31->post(Resources::$Email, ['body' => $body1]);

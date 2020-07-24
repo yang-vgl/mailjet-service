@@ -15,8 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test/di', 'MailTestController@testDependency');
-Route::get('/test/send', 'MailTestController@testSend');
+
 Route::get('/test/get', 'MailTestController@testGet');
 
 Route::get('/test/temp', 'MailTestController@testTemp');
@@ -31,3 +30,11 @@ Route::get('/test/contact/list/create', 'MailTestController@testContactList');
 
 Route::get('/test/piwik', 'PiwikTestController@testPiwik');
 
+//Route::group(['middlewareGroups' => 'web'], function () {
+    Route::get('/test/di', 'MailTestController@testDependency');
+    Route::get('/test/send', 'MailTestController@testSend');
+//});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

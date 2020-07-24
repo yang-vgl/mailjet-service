@@ -12,6 +12,7 @@
  */
 namespace App\Services\Log;
 use App\Contracts\LogContract;
+use Illuminate\Support\Facades\Log;
 
 /**
  * PiwikTracker implements the Matomo Tracking Web API.
@@ -1546,7 +1547,7 @@ class PiwikTrackerService implements LogContract
                     'Accept-Language: ' . $this->acceptLanguage,
                 ),
             );
-
+           Log::debug(1);
             if ($method === 'GET') {
                 $options[CURLOPT_FOLLOWLOCATION] = true;
             }
@@ -1566,7 +1567,7 @@ class PiwikTrackerService implements LogContract
                 default:
                     break;
             }
-
+            Log::debug(2);
             // only supports JSON data
             if (!empty($data)) {
                 $options[CURLOPT_HTTPHEADER][] = 'Content-Type: application/json';
@@ -1583,6 +1584,9 @@ class PiwikTrackerService implements LogContract
             curl_setopt_array($ch, $options);
             ob_start();
             $response = @curl_exec($ch);
+            Log::debug(3);
+            Log::debug(json_encode($response));
+            Log::debug(4);
             ob_end_clean();
             $header = '';
             $content = '';

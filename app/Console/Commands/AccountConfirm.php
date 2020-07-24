@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Events\AccountCreate;
+use App\Notifications\InvoicePaid;
+use App\User;
 use Illuminate\Console\Command;
 
 class AccountConfirm extends Command
@@ -38,6 +40,9 @@ class AccountConfirm extends Command
      */
     public function handle()
     {
+        $user =  new User();
+        $user->notify(new InvoicePaid());
+        exit;
         $subject = $this->ask('Enter Subject:', 'Account Confirm');
         $fromEmail = $this->ask("Enter From Email():", config('services.mailjet.From.Email'));
         $fromName = $this->ask("Enter From Name():", config('services.mailjet.From.Name'));

@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class PiwikTrack implements ShouldQueue
 {
@@ -38,6 +39,7 @@ class PiwikTrack implements ShouldQueue
      */
     public function handle()
     {
-        $this->piwik->doTrackEvent('transactional', $this->action, $this->response);
+        $res = $this->piwik->doTrackEvent('transactional', $this->action, $this->response);
+        Log::debug(json_encode($res));
     }
 }
