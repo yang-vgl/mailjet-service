@@ -111,7 +111,7 @@ Version 3 : for other common services(e.g. contacts, attributes, webhook).
          //basic HTTP(s) Authentication for webhook callback
          'callback' => [
              'username' => 'username',
-             'password' => 'password'
+             'password' => 'password' 
          ]
      ]
 
